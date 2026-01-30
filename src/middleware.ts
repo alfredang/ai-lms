@@ -1,6 +1,8 @@
-import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
-import type { RoleName } from "@prisma/client";
+import type { NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
+
+type RoleName = "LEARNER" | "TRAINER" | "ADMIN" | "SUPERADMIN";
 
 // Routes that require specific roles
 const roleRoutes: Record<string, RoleName[]> = {
@@ -11,85 +13,72 @@ const roleRoutes: Record<string, RoleName[]> = {
 };
 
 // Public routes that don't require authentication
-const publicRoutes = [
-  "/",
-  "/login",
-  "/register",
-  "/courses",
-  "/about",
-  "/contact",
-];
+const publicRoutes = ["/", "/login", "/register", "/courses", "/about", "/contact"];
 
 // Routes that should redirect authenticated users
 const authRoutes = ["/login", "/register"];
 
-export default auth((req) => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
-  const userRole = req.auth?.user?.role as RoleName | undefined;
-  const pathname = nextUrl.pathname;
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
 
-  // Check if route is public
-  const isPublicRoute = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith(`${route}/`)
-  );
-
-  // Check if route is auth route (login/register)
-  const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
-
-  // API routes are handled separately
-  if (pathname.startsWith("/api")) {
-    return NextResponse.next();
-  }
-
-  // Static files
+  // Skip static files and API routes
   if (
     pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
     pathname.includes(".") ||
     pathname.startsWith("/favicon")
   ) {
     return NextResponse.next();
   }
 
+  // Get JWT token
+  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
+  const isLoggedIn = !!token;
+  const userRole = token?.role as RoleName | undefined;
+
+  // Check route types
+  const isPublicRoute = publicRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+  const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
+  const isProtectedRoute = Object.keys(roleRoutes).some((route) =>
+    pathname.startsWith(route)
+  );
+
   // Redirect authenticated users away from auth routes
   if (isAuthRoute && isLoggedIn) {
-    const redirectPath = getDashboardPath(userRole!);
-    return NextResponse.redirect(new URL(redirectPath, nextUrl));
+    const redirectPath = getDashboardPath(userRole);
+    return NextResponse.redirect(new URL(redirectPath, req.url));
   }
 
   // Allow public routes
-  if (isPublicRoute && !isProtectedRoute(pathname)) {
+  if (isPublicRoute && !isProtectedRoute) {
     return NextResponse.next();
   }
 
   // Require authentication for protected routes
-  if (!isLoggedIn) {
+  if (!isLoggedIn && isProtectedRoute) {
     const callbackUrl = encodeURIComponent(pathname);
-    return NextResponse.redirect(
-      new URL(`/login?callbackUrl=${callbackUrl}`, nextUrl)
-    );
+    return NextResponse.redirect(new URL(`/login?callbackUrl=${callbackUrl}`, req.url));
   }
 
   // Check role-based access
-  for (const [routePrefix, allowedRoles] of Object.entries(roleRoutes)) {
-    if (pathname.startsWith(routePrefix)) {
-      if (!userRole || !allowedRoles.includes(userRole)) {
-        // Redirect to user's appropriate dashboard
-        const redirectPath = getDashboardPath(userRole!);
-        return NextResponse.redirect(new URL(redirectPath, nextUrl));
+  if (isLoggedIn && isProtectedRoute) {
+    for (const [routePrefix, allowedRoles] of Object.entries(roleRoutes)) {
+      if (pathname.startsWith(routePrefix)) {
+        if (!userRole || !allowedRoles.includes(userRole)) {
+          const redirectPath = getDashboardPath(userRole);
+          return NextResponse.redirect(new URL(redirectPath, req.url));
+        }
+        break;
       }
-      break;
     }
   }
 
   return NextResponse.next();
-});
-
-function isProtectedRoute(pathname: string): boolean {
-  return Object.keys(roleRoutes).some((route) => pathname.startsWith(route));
 }
 
-function getDashboardPath(role: RoleName): string {
+function getDashboardPath(role: RoleName | undefined): string {
   switch (role) {
     case "SUPERADMIN":
       return "/superadmin";
