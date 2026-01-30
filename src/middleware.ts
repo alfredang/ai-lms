@@ -13,7 +13,7 @@ const roleRoutes: Record<string, RoleName[]> = {
 };
 
 // Public routes that don't require authentication
-const publicRoutes = ["/", "/login", "/register", "/courses", "/about", "/contact"];
+const publicRoutes = ["/", "/login", "/register", "/courses", "/about", "/contact", "/docs"];
 
 // Routes that should redirect authenticated users
 const authRoutes = ["/login", "/register"];

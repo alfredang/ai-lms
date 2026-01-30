@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 const navigation = [
   { name: "Courses", href: "/courses" },
   { name: "Categories", href: "/categories" },
+  { name: "Docs", href: "/docs" },
   { name: "About", href: "/about" },
 ];
 

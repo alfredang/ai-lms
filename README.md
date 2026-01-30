@@ -2,6 +2,18 @@
 
 A modern, production-ready Learning Management System built with Next.js 14, featuring AI-powered learning assistance, gamification, and role-based access control.
 
+## Live Demo
+
+**Demo Site**: [https://ai-lms-xi.vercel.app](https://ai-lms-xi.vercel.app)
+
+### Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| Superadmin | admin@learnhub.com | admin123 |
+| Trainer | trainer@learnhub.com | admin123 |
+| Learner | learner@learnhub.com | admin123 |
+
 ## Features
 
 - **AI-Powered Learning**: Context-aware chatbot for personalized learning assistance
