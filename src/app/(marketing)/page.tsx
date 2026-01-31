@@ -20,6 +20,7 @@ import {
   Bot,
   Code2,
   Cloud,
+  Megaphone,
   type LucideIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -85,10 +86,11 @@ async function getCategoriesWithCounts() {
   const categoryIcons: Record<string, { color: string; bgColor: string; icon: LucideIcon }> = {
     "real-estate": { color: "text-emerald-400", bgColor: "bg-emerald-500/20", icon: Home },
     "investment": { color: "text-green-400", bgColor: "bg-green-500/20", icon: TrendingUp },
-    "soft-skills": { color: "text-orange-400", bgColor: "bg-orange-500/20", icon: MessageSquare },
+    "soft-skills": { color: "text-amber-400", bgColor: "bg-amber-500/20", icon: MessageSquare },
     "gen-ai-agentic-ai": { color: "text-purple-400", bgColor: "bg-purple-500/20", icon: Bot },
     "full-stack-vibe-coding": { color: "text-cyan-400", bgColor: "bg-cyan-500/20", icon: Code2 },
     "cloud-computing": { color: "text-blue-400", bgColor: "bg-blue-500/20", icon: Cloud },
+    "digital-marketing": { color: "text-pink-400", bgColor: "bg-pink-500/20", icon: Megaphone },
   };
 
   return categories.map((cat) => ({

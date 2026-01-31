@@ -10,6 +10,9 @@ import {
   ArrowRight,
   Plus,
   UserPlus,
+  Eye,
+  Calendar,
+  UserCog,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -209,6 +212,68 @@ export default async function AdminDashboard() {
               <Link href="/admin/analytics">
                 <BarChart3 className="mr-2 h-4 w-4" />
                 View Analytics
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* View As & Scheduling Section */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* View As Different Roles */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Eye className="h-5 w-5" />
+              View As
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Preview the platform from different user perspectives
+            </p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Button variant="outline" className="justify-start" asChild>
+                <Link href="/learner">
+                  <GraduationCap className="mr-2 h-4 w-4 text-blue-500" />
+                  View as Learner
+                </Link>
+              </Button>
+              <Button variant="outline" className="justify-start" asChild>
+                <Link href="/trainer">
+                  <Users className="mr-2 h-4 w-4 text-green-500" />
+                  View as Trainer
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Scheduling & Assignments */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              Scheduling & Assignments
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <Button variant="outline" className="w-full justify-start" asChild>
+              <Link href="/admin/classes">
+                <Calendar className="mr-2 h-4 w-4" />
+                Schedule Classes
+              </Link>
+            </Button>
+            <Button variant="outline" className="w-full justify-start" asChild>
+              <Link href="/admin/classes">
+                <UserCog className="mr-2 h-4 w-4" />
+                Assign Trainers to Classes
+              </Link>
+            </Button>
+            <Button variant="outline" className="w-full justify-start" asChild>
+              <Link href="/admin/users?role=LEARNER">
+                <GraduationCap className="mr-2 h-4 w-4" />
+                Manage Learner Enrollments
               </Link>
             </Button>
           </CardContent>

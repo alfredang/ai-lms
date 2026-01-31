@@ -118,18 +118,30 @@ enum DifficultyLevel {
   EXPERT
 }
 
+enum DeliveryFormat {
+  INSTRUCTOR_LED
+  E_LEARNING
+}
+
+enum SessionType {
+  CLASSROOM
+  VIRTUAL
+}
+
 model Course {
-  id          String          @id @default(cuid())
-  title       String
-  slug        String          @unique
-  description String          @db.Text
-  thumbnail   String?
-  duration    Int // in minutes
-  difficulty  DifficultyLevel @default(BEGINNER)
-  isPublished Boolean         @default(false)
-  isFeatured  Boolean         @default(false)
-  price       Decimal?        @db.Decimal(10, 2)
-  tags        String[]
+  id             String          @id @default(cuid())
+  title          String
+  slug           String          @unique
+  description    String          @db.Text
+  thumbnail      String?
+  duration       Int // in minutes
+  difficulty     DifficultyLevel @default(BEGINNER)
+  deliveryFormat DeliveryFormat  @default(E_LEARNING)
+  sessionType    SessionType     @default(VIRTUAL)
+  isPublished    Boolean         @default(false)
+  isFeatured     Boolean         @default(false)
+  price          Decimal?        @db.Decimal(10, 2)
+  tags           String[]
 
   categoryId String
   category   Category @relation(fields: [categoryId], references: [id])

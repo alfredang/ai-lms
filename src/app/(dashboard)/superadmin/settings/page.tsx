@@ -12,6 +12,9 @@ import {
   Globe,
   Mail,
   Save,
+  CreditCard,
+  DollarSign,
+  Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import { AIProviderSettings } from "@/components/settings/ai-provider-settings";
@@ -202,6 +205,167 @@ export default async function SuperadminSettingsPage() {
                 </p>
               </div>
               <Badge className="bg-green-500">Enabled</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Stripe Settings */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CreditCard className="h-5 w-5" />
+              Stripe Settings
+            </CardTitle>
+            <CardDescription>
+              Configure Stripe payment processing
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium">Status</p>
+                <p className="text-xs text-muted-foreground">
+                  Payment processing status
+                </p>
+              </div>
+              <Badge variant="outline" className="text-yellow-500 border-yellow-500">
+                Not Configured
+              </Badge>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Publishable Key</label>
+              <Input
+                type="password"
+                placeholder="pk_live_..."
+                className="font-mono text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Secret Key</label>
+              <Input
+                type="password"
+                placeholder="sk_live_..."
+                className="font-mono text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Webhook Secret</label>
+              <Input
+                type="password"
+                placeholder="whsec_..."
+                className="font-mono text-sm"
+              />
+            </div>
+            <div className="flex items-center justify-between rounded-lg border p-3">
+              <div>
+                <p className="text-sm font-medium">Test Mode</p>
+                <p className="text-xs text-muted-foreground">
+                  Use Stripe test environment
+                </p>
+              </div>
+              <Badge className="bg-blue-500">Enabled</Badge>
+            </div>
+            <Button className="w-full">
+              <Save className="mr-2 h-4 w-4" />
+              Save Stripe Settings
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* PayPal Settings */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Wallet className="h-5 w-5" />
+              PayPal Settings
+            </CardTitle>
+            <CardDescription>
+              Configure PayPal payment processing
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium">Status</p>
+                <p className="text-xs text-muted-foreground">
+                  PayPal integration status
+                </p>
+              </div>
+              <Badge variant="outline" className="text-yellow-500 border-yellow-500">
+                Not Configured
+              </Badge>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Client ID</label>
+              <Input
+                type="password"
+                placeholder="Client ID from PayPal Developer"
+                className="font-mono text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Client Secret</label>
+              <Input
+                type="password"
+                placeholder="Client Secret from PayPal Developer"
+                className="font-mono text-sm"
+              />
+            </div>
+            <div className="flex items-center justify-between rounded-lg border p-3">
+              <div>
+                <p className="text-sm font-medium">Sandbox Mode</p>
+                <p className="text-xs text-muted-foreground">
+                  Use PayPal sandbox environment
+                </p>
+              </div>
+              <Badge className="bg-blue-500">Enabled</Badge>
+            </div>
+            <Button className="w-full">
+              <Save className="mr-2 h-4 w-4" />
+              Save PayPal Settings
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Payment Overview */}
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <DollarSign className="h-5 w-5" />
+              Payment Overview
+            </CardTitle>
+            <CardDescription>
+              Revenue and payment statistics
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-4">
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Total Revenue</p>
+                <p className="mt-1 text-2xl font-bold text-green-500">$0.00</p>
+              </div>
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">This Month</p>
+                <p className="mt-1 text-2xl font-bold">$0.00</p>
+              </div>
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Transactions</p>
+                <p className="mt-1 text-2xl font-bold">0</p>
+              </div>
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Avg. Order</p>
+                <p className="mt-1 text-2xl font-bold">$0.00</p>
+              </div>
+            </div>
+            <div className="mt-4 flex gap-2">
+              <Button variant="outline" className="flex-1">
+                <CreditCard className="mr-2 h-4 w-4" />
+                View Transactions
+              </Button>
+              <Button variant="outline" className="flex-1">
+                <DollarSign className="mr-2 h-4 w-4" />
+                Payout Settings
+              </Button>
             </div>
           </CardContent>
         </Card>

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, BarChart3, Star, User, GraduationCap } from "lucide-react";
+import { Clock, BarChart3, Star, User, GraduationCap, Monitor, Users, Video, Building } from "lucide-react";
 
 // Force dynamic rendering to avoid database access at build time
 export const dynamic = "force-dynamic";
@@ -18,10 +18,22 @@ const levelColors: Record<string, string> = {
 
 const categoryIcons: Record<string, string> = {
   "gen-ai-agentic-ai": "🤖",
-  "vibe-coding": "💻",
+  "full-stack-vibe-coding": "💻",
   "investment": "📈",
   "soft-skills": "🎯",
-  "marketing": "📣",
+  "digital-marketing": "📣",
+  "real-estate": "🏠",
+  "cloud-computing": "☁️",
+};
+
+const deliveryLabels: Record<string, string> = {
+  INSTRUCTOR_LED: "Instructor-Led",
+  E_LEARNING: "E-Learning",
+};
+
+const sessionLabels: Record<string, string> = {
+  CLASSROOM: "Classroom",
+  VIRTUAL: "Virtual",
 };
 
 async function getCourses(categorySlug?: string) {
@@ -65,6 +77,8 @@ async function getCourses(categorySlug?: string) {
       thumbnail: course.thumbnail,
       level: course.difficulty,
       duration: `${course.duration} mins`,
+      deliveryFormat: course.deliveryFormat || "E_LEARNING",
+      sessionType: course.sessionType || "VIRTUAL",
     };
   });
 }
@@ -173,6 +187,26 @@ export default async function CoursesPage({
               <p className="line-clamp-2 text-sm text-muted-foreground">
                 {course.description}
               </p>
+
+              {/* Delivery Format Tags */}
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <Badge variant="outline" className="text-xs gap-1">
+                  {course.deliveryFormat === "INSTRUCTOR_LED" ? (
+                    <Users className="h-3 w-3" />
+                  ) : (
+                    <Monitor className="h-3 w-3" />
+                  )}
+                  {deliveryLabels[course.deliveryFormat]}
+                </Badge>
+                <Badge variant="outline" className="text-xs gap-1">
+                  {course.sessionType === "CLASSROOM" ? (
+                    <Building className="h-3 w-3" />
+                  ) : (
+                    <Video className="h-3 w-3" />
+                  )}
+                  {sessionLabels[course.sessionType]}
+                </Badge>
+              </div>
 
               <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
                 <User className="h-4 w-4" />

@@ -3,23 +3,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import {
-  Globe,
-  BarChart3,
-  Smartphone,
+  Home,
+  TrendingUp,
+  MessageSquare,
+  Bot,
+  Code2,
   Cloud,
-  GitBranch,
-  Brain,
+  Megaphone,
   BookOpen,
   ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  globe: Globe,
-  "bar-chart": BarChart3,
-  smartphone: Smartphone,
-  cloud: Cloud,
-  "git-branch": GitBranch,
-  brain: Brain,
+// Force dynamic rendering to avoid database access at build time
+export const dynamic = "force-dynamic";
+
+const categoryIcons: Record<string, { color: string; bgColor: string; icon: LucideIcon }> = {
+  "real-estate": { color: "text-emerald-400", bgColor: "bg-emerald-500/20", icon: Home },
+  "investment": { color: "text-green-400", bgColor: "bg-green-500/20", icon: TrendingUp },
+  "soft-skills": { color: "text-amber-400", bgColor: "bg-amber-500/20", icon: MessageSquare },
+  "gen-ai-agentic-ai": { color: "text-purple-400", bgColor: "bg-purple-500/20", icon: Bot },
+  "full-stack-vibe-coding": { color: "text-cyan-400", bgColor: "bg-cyan-500/20", icon: Code2 },
+  "cloud-computing": { color: "text-blue-400", bgColor: "bg-blue-500/20", icon: Cloud },
+  "digital-marketing": { color: "text-pink-400", bgColor: "bg-pink-500/20", icon: Megaphone },
 };
 
 async function getCategories() {
@@ -64,17 +70,20 @@ export default async function CategoriesPage() {
       {/* Categories Grid */}
       <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => {
-          const Icon = iconMap[category.icon || ""] || BookOpen;
+          const iconConfig = categoryIcons[category.slug];
+          const Icon = iconConfig?.icon || BookOpen;
+          const iconColor = iconConfig?.color || "text-gray-400";
+          const iconBgColor = iconConfig?.bgColor || "bg-gray-500/20";
 
           return (
-            <Card key={category.id} className="group relative overflow-hidden">
+            <Card key={category.id} className="group relative overflow-hidden transition-all hover:shadow-lg hover:border-primary">
               <CardHeader>
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${iconBgColor} transition-colors`}>
+                    <Icon className={`h-7 w-7 ${iconColor}`} />
                   </div>
                   <div>
-                    <CardTitle className="text-xl">{category.name}</CardTitle>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors">{category.name}</CardTitle>
                     <p className="text-sm text-muted-foreground">
                       {category._count.courses} course
                       {category._count.courses !== 1 ? "s" : ""}
