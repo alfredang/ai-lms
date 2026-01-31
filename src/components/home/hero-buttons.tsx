@@ -3,17 +3,16 @@
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RegisterModal } from "@/components/auth/register-modal";
 
 export function HeroButtons() {
   return (
-    <div className="mt-10 flex items-center justify-center gap-4">
-      <RegisterModal>
-        <Button size="lg">
+    <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <Button size="lg" asChild>
+        <Link href="/register">
           Get Started Free
           <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </RegisterModal>
+        </Link>
+      </Button>
       <Button size="lg" variant="outline" asChild>
         <Link href="/courses">
           <Play className="mr-2 h-4 w-4" />
@@ -26,13 +25,13 @@ export function HeroButtons() {
 
 export function CTAButtons() {
   return (
-    <div className="mt-8 flex items-center justify-center gap-4">
-      <RegisterModal>
-        <Button size="lg">
+    <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <Button size="lg" asChild>
+        <Link href="/register">
           Create Free Account
           <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </RegisterModal>
+        </Link>
+      </Button>
       <Button size="lg" variant="outline" asChild>
         <Link href="/courses">View All Courses</Link>
       </Button>
