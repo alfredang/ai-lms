@@ -6,6 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock, BarChart3, Star, User, GraduationCap } from "lucide-react";
 
+// Force dynamic rendering to avoid database access at build time
+export const dynamic = "force-dynamic";
+
 const levelColors: Record<string, string> = {
   BEGINNER: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
   INTERMEDIATE: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",

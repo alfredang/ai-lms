@@ -21,6 +21,9 @@ import { Button } from "@/components/ui/button";
 import { HeroButtons, CTAButtons } from "@/components/home/hero-buttons";
 import { prisma } from "@/lib/prisma";
 
+// Force dynamic rendering to avoid database access at build time
+export const dynamic = "force-dynamic";
+
 async function getFeaturedCourses() {
   const courses = await prisma.course.findMany({
     where: { isPublished: true },
