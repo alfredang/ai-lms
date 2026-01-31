@@ -15,6 +15,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { LoginModal } from "@/components/auth/login-modal";
+import { RegisterModal } from "@/components/auth/register-modal";
 
 const navigation = [
   { name: "Courses", href: "/courses" },
@@ -153,12 +155,12 @@ export function Header() {
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <Button variant="ghost" asChild>
-                <Link href="/login">Log in</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/register">Get Started</Link>
-              </Button>
+              <LoginModal>
+                <Button variant="ghost">Log in</Button>
+              </LoginModal>
+              <RegisterModal>
+                <Button>Get Started</Button>
+              </RegisterModal>
             </div>
           )}
         </div>
@@ -200,20 +202,20 @@ export function Header() {
                 </>
               ) : (
                 <>
-                  <Link
-                    href="/login"
-                    className="block rounded-lg px-3 py-2 text-base font-medium hover:bg-accent"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Log in
-                  </Link>
-                  <Link
-                    href="/register"
-                    className="block rounded-lg px-3 py-2 text-base font-medium text-primary hover:bg-accent"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Get Started
-                  </Link>
+                  <LoginModal>
+                    <button
+                      className="block w-full rounded-lg px-3 py-2 text-left text-base font-medium hover:bg-accent"
+                    >
+                      Log in
+                    </button>
+                  </LoginModal>
+                  <RegisterModal>
+                    <button
+                      className="block w-full rounded-lg px-3 py-2 text-left text-base font-medium text-primary hover:bg-accent"
+                    >
+                      Get Started
+                    </button>
+                  </RegisterModal>
                 </>
               )}
             </div>

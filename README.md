@@ -16,28 +16,52 @@ A modern, production-ready Learning Management System built with Next.js 14, fea
 
 ## Features
 
-- **AI-Powered Learning**: Context-aware chatbot for personalized learning assistance
+### Core Features
+- **AI-Powered Learning**: Context-aware chatbot for personalized learning assistance (floating chat bubble on all pages)
 - **Gamification**: XP points, badges, levels, and learning streaks
-- **Role-Based Access**: Learner, Trainer, Admin, and Superadmin roles
-- **Modern UI**: Clean, responsive design with Tailwind CSS
-- **Secure Authentication**: NextAuth with Google, GitHub, and credentials
+- **Role-Based Access**: Learner, Trainer, Admin, and Superadmin roles with separate login flows
+- **Modern UI**: Clean, responsive design with dark mode support
+- **Secure Authentication**: NextAuth with Google, GitHub OAuth, and credentials
+
+### Course Categories
+- Gen AI & Agentic AI
+- Vibe Coding
+- Investment
+- Soft Skills
+- Marketing
+
+### Payment Integration
+- Stripe payment processing
+- PayPal checkout support
+
+### Authentication
+- **Learners/Trainers**: Login modal popup with Google/GitHub OAuth
+- **Admin/Superadmin**: Separate secure login portal at `/admin/login`
+
+### AI Provider Support (Superadmin Settings)
+- OpenAI (GPT-4o, GPT-4 Turbo, GPT-3.5)
+- Google Gemini (Pro, Flash)
+- Anthropic Claude (Opus, Sonnet, Haiku)
+- OpenRouter (Multiple models)
+- DeepSeek (Chat, Coder)
 
 ## Tech Stack
 
 - **Frontend**: Next.js 14 (App Router), React, TypeScript
-- **Styling**: Tailwind CSS
-- **Authentication**: NextAuth v5
-- **Database**: PostgreSQL with Prisma ORM
-- **AI**: OpenAI API
+- **Styling**: Tailwind CSS, Shadcn UI components
+- **Authentication**: NextAuth v5 with JWT
+- **Database**: PostgreSQL with Prisma ORM (Neon serverless)
+- **AI**: OpenAI-compatible API
 - **File Storage**: Vercel Blob
 - **Email**: Resend
+- **Payments**: Stripe, PayPal
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- PostgreSQL database
+- PostgreSQL database (or Neon serverless)
 - npm or yarn
 
 ### Installation
@@ -82,16 +106,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Demo Accounts
-
-After seeding the database:
-
-| Role | Email | Password |
-|------|-------|----------|
-| Superadmin | admin@learnhub.com | admin123 |
-| Trainer | trainer@learnhub.com | admin123 |
-| Learner | learner@learnhub.com | admin123 |
-
 ## Project Structure
 
 ```
@@ -101,20 +115,46 @@ After seeding the database:
 │   └── seed.ts            # Seed data
 ├── src/
 │   ├── app/               # Next.js App Router
-│   │   ├── (marketing)/   # Public pages
+│   │   ├── (marketing)/   # Public pages (homepage, courses, about)
 │   │   ├── (auth)/        # Authentication pages
+│   │   │   ├── login/     # Learner/Trainer login
+│   │   │   ├── register/  # Registration page
+│   │   │   └── admin/     # Admin/Superadmin login portal
 │   │   ├── (dashboard)/   # Protected dashboards
+│   │   │   ├── learner/   # Learner dashboard
+│   │   │   ├── trainer/   # Trainer dashboard
+│   │   │   ├── admin/     # Admin dashboard
+│   │   │   └── superadmin/# Superadmin dashboard
 │   │   └── api/           # API routes
+│   │       ├── ai/        # AI chat endpoints
+│   │       ├── payments/  # Stripe & PayPal
+│   │       └── auth/      # Authentication
 │   ├── components/        # React components
-│   │   ├── ui/            # Base UI components
-│   │   ├── layout/        # Layout components
+│   │   ├── ui/            # Base UI components (Shadcn)
+│   │   ├── layout/        # Header, Footer, Sidebar
+│   │   ├── auth/          # Login/Register modals
+│   │   ├── ai/            # AI chat widget
 │   │   ├── courses/       # Course components
-│   │   └── gamification/  # Gamification components
-│   ├── lib/               # Utilities
-│   ├── services/          # Business logic
-│   ├── config/            # Configuration
+│   │   ├── payment/       # Checkout forms
+│   │   └── gamification/  # XP, badges, streaks
+│   ├── lib/               # Utilities & configurations
+│   ├── services/          # Business logic services
+│   ├── config/            # App configuration
 │   └── types/             # TypeScript types
 ```
+
+## Key Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage with featured courses |
+| `/courses` | Course catalog with category filtering |
+| `/admin/login` | Admin/Superadmin login portal |
+| `/learner` | Learner dashboard |
+| `/trainer` | Trainer dashboard |
+| `/admin` | Admin dashboard |
+| `/superadmin` | Superadmin dashboard |
+| `/superadmin/settings` | AI provider configuration |
 
 ## Scripts
 
@@ -124,6 +164,17 @@ After seeding the database:
 - `npm run db:push` - Push schema to database
 - `npm run db:seed` - Seed database with demo data
 - `npm run db:studio` - Open Prisma Studio
+
+## Recent Updates
+
+- Added AI chatbot floating widget on all pages
+- Implemented login/register modal popups for learners/trainers
+- Added separate admin/superadmin login portal with tabs
+- Added multi-provider AI configuration (OpenAI, Gemini, Claude, etc.)
+- Added Stripe and PayPal payment integration
+- Updated course categories (Gen AI, Vibe Coding, Investment, Soft Skills, Marketing)
+- Added featured courses section on homepage
+- Enhanced footer with social media icons and payment badges
 
 ## License
 
