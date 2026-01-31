@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { Sidebar } from "@/components/layout/sidebar";
 import { DashboardHeader } from "@/components/layout/dashboard-header";
+import { ChatWidget } from "@/components/ai/chat-widget";
 
 export default async function DashboardLayout({
   children,
@@ -23,6 +24,10 @@ export default async function DashboardLayout({
           {children}
         </main>
       </div>
+      <ChatWidget
+        userId={session.user.id}
+        userRole={session.user.role}
+      />
     </div>
   );
 }

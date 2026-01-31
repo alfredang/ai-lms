@@ -200,6 +200,12 @@ export default async function AdminDashboard() {
               </Link>
             </Button>
             <Button variant="outline" className="w-full justify-start" asChild>
+              <Link href="/admin/classes">
+                <GraduationCap className="mr-2 h-4 w-4" />
+                Manage Classes
+              </Link>
+            </Button>
+            <Button variant="outline" className="w-full justify-start" asChild>
               <Link href="/admin/analytics">
                 <BarChart3 className="mr-2 h-4 w-4" />
                 View Analytics
