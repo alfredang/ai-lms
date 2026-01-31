@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superadmin Guide - LearnHub Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          <span class="logo-text">LearnHub</span>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+      <div class="sidebar-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>User Guide</div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><button class="nav-item" data-section="getting-started"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2"></path></svg>Getting Started</button><div class="nav-children hidden" id="getting-started-children"><a href="index.html" class="nav-child">Introduction</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="learner-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path></svg>Learner Guide</button><div class="nav-children hidden" id="learner-guide-children"><a href="learner-guide.html" class="nav-child">Dashboard</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="trainer-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path></svg>Trainer Guide</button><div class="nav-children hidden" id="trainer-guide-children"><a href="trainer-guide.html" class="nav-child">Dashboard</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="admin-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Admin Guide</button><div class="nav-children hidden" id="admin-guide-children"><a href="admin-guide.html" class="nav-child">Dashboard</a></div></div>
+        <div class="nav-section"><button class="nav-item active" data-section="superadmin-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Superadmin Guide</button><div class="nav-children" id="superadmin-guide-children"><a href="#dashboard" class="nav-child active">Dashboard</a><a href="#ai-settings" class="nav-child">AI Configuration</a><a href="#api-keys" class="nav-child">API Keys</a><a href="#payments" class="nav-child">Payment Settings</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="features"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Features</button><div class="nav-children hidden" id="features-children"><a href="features.html" class="nav-child">Overview</a></div></div>
+      </nav>
+      <div class="sidebar-footer"><a href="https://ai-lms-xi.vercel.app" class="back-to-app" target="_blank">Open LearnHub App</a></div>
+    </aside>
+    <div class="mobile-header">
+      <button class="menu-toggle" id="menuToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <a href="index.html" class="logo"><span class="logo-text">LearnHub Docs</span></a>
+      <button class="theme-toggle" id="mobileThemeToggle"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+    </div>
+    <main class="main-content">
+      <div class="content-wrapper">
+        <nav class="breadcrumb"><a href="index.html">Docs</a><span>/</span><span>Superadmin Guide</span></nav>
+        <article class="article">
+          <h1 id="dashboard">Superadmin Guide</h1>
+          <p class="lead">Configure system-wide settings, AI providers, API keys, and payment integrations.</p>
+          <div class="info-box"><div class="info-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="info-box-content"><strong>Demo Account</strong><p>Try the superadmin experience: <code>admin@learnhub.com</code> / <code>admin123</code></p></div></div>
+          <h2>Superadmin Dashboard</h2>
+          <p>The Superadmin Dashboard provides full system oversight:</p>
+          <div class="feature-grid">
+            <div class="feature-card"><div class="feature-icon ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg></div><h3>AI Status</h3><p>View AI provider status, usage, and configuration.</p></div>
+            <div class="feature-card"><div class="feature-icon gamification"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div><h3>API Keys</h3><p>Manage third-party API keys and secrets.</p></div>
+            <div class="feature-card"><div class="feature-icon roles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div><h3>Payment Settings</h3><p>Configure Stripe and PayPal integrations.</p></div>
+            <div class="feature-card"><div class="feature-icon theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div><h3>System Settings</h3><p>Configure global platform settings.</p></div>
+          </div>
+          <h2 id="ai-settings">AI Configuration</h2>
+          <p>Configure the AI assistant to use your preferred provider:</p>
+          <h3>Supported Providers</h3>
+          <div class="accounts-table"><table><thead><tr><th>Provider</th><th>Models</th><th>Features</th></tr></thead><tbody><tr><td><strong>OpenAI</strong></td><td>GPT-4o, GPT-4 Turbo, GPT-3.5</td><td>Best overall, function calling</td></tr><tr><td><strong>Google Gemini</strong></td><td>Gemini Pro, Gemini Flash</td><td>Fast responses, multimodal</td></tr><tr><td><strong>Anthropic Claude</strong></td><td>Opus, Sonnet, Haiku</td><td>Long context, safety-focused</td></tr><tr><td><strong>OpenRouter</strong></td><td>Multiple models</td><td>Access to many providers</td></tr><tr><td><strong>DeepSeek</strong></td><td>Chat, Coder</td><td>Code-focused, cost-effective</td></tr></tbody></table></div>
+          <h3>Configuration Options</h3>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li><strong>Provider:</strong> Select your AI provider</li><li><strong>API Key:</strong> Enter your provider API key (stored encrypted)</li><li><strong>Model:</strong> Choose the specific model to use</li><li><strong>Max Tokens:</strong> Set maximum response length</li><li><strong>Temperature:</strong> Adjust response creativity (0-1)</li></ul>
+          <h2 id="api-keys">API Key Management</h2>
+          <p>Securely store and manage API keys for external services:</p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li><strong>OpenAI API Key:</strong> For AI chat features</li><li><strong>Google OAuth:</strong> For Google sign-in</li><li><strong>GitHub OAuth:</strong> For GitHub sign-in</li><li><strong>Stripe Keys:</strong> For payment processing</li><li><strong>PayPal Credentials:</strong> For PayPal checkout</li><li><strong>Resend API Key:</strong> For email notifications</li></ul>
+          <div class="info-box"><div class="info-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><div class="info-box-content"><strong>Security Note</strong><p>All API keys are encrypted before storage. Never share your API keys or commit them to version control.</p></div></div>
+          <h2 id="payments">Payment Settings</h2>
+          <p>Configure payment processing for paid courses:</p>
+          <h3>Stripe Integration</h3>
+          <ol style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li>Get your API keys from the Stripe Dashboard</li><li>Enter your Publishable Key and Secret Key</li><li>Configure webhook endpoint for payment events</li><li>Set up products and prices in Stripe</li></ol>
+          <h3>PayPal Integration</h3>
+          <ol style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li>Create a PayPal Developer account</li><li>Get your Client ID and Secret from the dashboard</li><li>Configure sandbox mode for testing</li><li>Switch to live credentials for production</li></ol>
+          <h2>System Maintenance</h2>
+          <p>Additional superadmin responsibilities:</p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li>Monitor system health and performance</li><li>Manage database backups and migrations</li><li>Review security logs and access patterns</li><li>Manage badge and gamification settings</li><li>Configure email templates and notifications</li></ul>
+          <div class="next-links"><a href="features.html" class="next-link"><div class="next-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><div class="next-link-content"><strong>Platform Features</strong><p>Explore all LearnHub features</p></div><svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a></div>
+        </article>
+        <footer class="content-footer"><p>&copy; 2026 LearnHub</p><div class="footer-links"><a href="https://github.com/alfredang/ai-lms" target="_blank">GitHub</a><a href="https://ai-lms-xi.vercel.app" target="_blank">Live Demo</a></div></footer>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

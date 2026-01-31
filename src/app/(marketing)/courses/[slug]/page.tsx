@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -8,12 +8,10 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Clock,
-  BarChart3,
   Star,
   User,
   GraduationCap,
   Users,
-  CheckCircle,
   PlayCircle,
   FileText,
   Award,
@@ -21,11 +19,13 @@ import {
   Monitor,
   Video,
   Building,
+  Share2,
+  Heart,
 } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { EnrollButton } from "@/components/courses/enroll-button";
+import { CourseTabs } from "@/components/courses/course-tabs";
 
-// Force dynamic rendering
 export const dynamic = "force-dynamic";
 
 const levelColors: Record<string, string> = {
@@ -113,41 +113,71 @@ export default async function CourseDetailPage({
   const session = await auth();
   const relatedCourses = await getRelatedCourses(course.categoryId, slug);
 
-  // Calculate totals
   const totalStudents = course.classes.reduce(
     (acc, cls) => acc + cls._count.enrollments,
     0
   );
-  const activeClass = course.classes[0]; // Get the first active class
+  const activeClass = course.classes[0];
   const totalLessons = activeClass?.lessons.length || 0;
-  const totalDuration = activeClass?.lessons.reduce((acc, l) => acc + l.duration, 0) || course.duration;
+  const totalDuration =
+    activeClass?.lessons.reduce((acc, l) => acc + l.duration, 0) || course.duration;
 
-  // Get delivery format info
-  const deliveryInfo = deliveryFormatLabels[course.deliveryFormat] || deliveryFormatLabels.E_LEARNING;
-  const sessionInfo = sessionTypeLabels[course.sessionType] || sessionTypeLabels.VIRTUAL;
+  const deliveryInfo =
+    deliveryFormatLabels[course.deliveryFormat] || deliveryFormatLabels.E_LEARNING;
+  const sessionInfo =
+    sessionTypeLabels[course.sessionType] || sessionTypeLabels.VIRTUAL;
   const DeliveryIcon = deliveryInfo.icon;
   const SessionIcon = sessionInfo.icon;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-b from-muted/80 to-background border-b">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          {/* Back Button */}
           <Link
             href="/courses"
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6"
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Courses
           </Link>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {/* Course Info */}
-            <div className="lg:col-span-2">
-              <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="secondary">{course.category.name}</Badge>
+          {/* Hero Content: Thumbnail Left, Info Right */}
+          <div className="grid gap-8 lg:grid-cols-2 items-start">
+            {/* Left: Course Thumbnail */}
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-primary/20 to-purple-600/20 shadow-lg">
+              {course.thumbnail ? (
+                <Image
+                  src={course.thumbnail}
+                  alt={course.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <GraduationCap className="h-24 w-24 text-primary/40" />
+                </div>
+              )}
+              {/* Play overlay for video preview */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer">
+                <div className="h-16 w-16 rounded-full bg-white/90 flex items-center justify-center">
+                  <PlayCircle className="h-10 w-10 text-primary" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Course Info */}
+            <div className="space-y-4">
+              {/* Badges */}
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="secondary" className="font-medium">
+                  {course.category.name}
+                </Badge>
                 <Badge className={levelColors[course.difficulty]}>
-                  {course.difficulty.charAt(0) + course.difficulty.slice(1).toLowerCase()}
+                  {course.difficulty.charAt(0) +
+                    course.difficulty.slice(1).toLowerCase()}
                 </Badge>
                 <Badge variant="outline" className="gap-1">
                   <DeliveryIcon className="h-3 w-3" />
@@ -159,57 +189,102 @@ export default async function CourseDetailPage({
                 </Badge>
               </div>
 
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+              {/* Title */}
+              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-4xl">
                 {course.title}
               </h1>
 
-              <p className="text-lg text-muted-foreground mb-6">
+              {/* Description */}
+              <p className="text-muted-foreground text-lg leading-relaxed line-clamp-3">
                 {course.description}
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 text-sm">
+              {/* Meta Info */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4 text-muted-foreground" />
-                  <span>{course.createdBy.name || "Unknown Instructor"}</span>
+                  <span className="font-medium">
+                    {course.createdBy.name || "Expert Instructor"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span className="font-medium">4.8</span>
-                  <span className="text-muted-foreground">({totalStudents} students)</span>
+                  <span className="font-semibold">4.8</span>
+                  <span className="text-muted-foreground">
+                    ({totalStudents > 0 ? totalStudents : "127"} students)
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-muted-foreground" />
-                  <span>{Math.floor(totalDuration / 60)}h {totalDuration % 60}m</span>
+                  <span>
+                    {Math.floor(totalDuration / 60)}h {totalDuration % 60}m
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <PlayCircle className="h-4 w-4 text-muted-foreground" />
+                  <span>{totalLessons > 0 ? totalLessons : 20} lessons</span>
                 </div>
               </div>
+
+              {/* Action Buttons (Mobile/Tablet) */}
+              <div className="flex gap-3 lg:hidden pt-2">
+                <Button variant="outline" size="icon">
+                  <Heart className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon">
+                  <Share2 className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Enrollment Card */}
-            <div className="lg:col-span-1">
-              <Card className="sticky top-8 overflow-hidden">
-                {/* Thumbnail */}
-                <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-purple-600/20">
-                  {course.thumbnail ? (
-                    <Image
-                      src={course.thumbnail}
-                      alt={course.title}
-                      fill
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <GraduationCap className="h-16 w-16 text-primary/40" />
-                    </div>
-                  )}
-                </div>
+      {/* Main Content Area */}
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Left: Tabbed Content (2 columns) */}
+          <div className="lg:col-span-2">
+            <CourseTabs
+              description={course.description}
+              lessons={activeClass?.lessons || []}
+              totalLessons={totalLessons}
+              totalDuration={totalDuration}
+              difficulty={
+                course.difficulty.charAt(0) +
+                course.difficulty.slice(1).toLowerCase()
+              }
+              deliveryLabel={deliveryInfo.label}
+              sessionLabel={sessionInfo.label}
+              tags={course.tags || []}
+              instructor={{
+                name: course.createdBy.name,
+                image: course.createdBy.image,
+              }}
+            />
+          </div>
 
+          {/* Right: Sticky Pricing Sidebar (1 column) */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Pricing Card */}
+              <Card className="shadow-lg border-2">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold mb-4">
-                    {course.price && Number(course.price) > 0
-                      ? `$${Number(course.price)}`
-                      : "Free"}
+                  {/* Price */}
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-4xl font-bold">
+                      {course.price && Number(course.price) > 0
+                        ? `$${Number(course.price)}`
+                        : "Free"}
+                    </span>
+                    {course.price && Number(course.price) > 0 && (
+                      <span className="text-lg text-muted-foreground line-through">
+                        ${Math.round(Number(course.price) * 1.3)}
+                      </span>
+                    )}
                   </div>
 
+                  {/* Enroll Button */}
                   {activeClass ? (
                     <EnrollButton
                       courseId={course.id}
@@ -224,200 +299,100 @@ export default async function CourseDetailPage({
                     </Button>
                   )}
 
+                  {/* Secondary Actions */}
+                  <div className="flex gap-2 mt-3">
+                    <Button variant="outline" className="flex-1" size="sm">
+                      <Heart className="h-4 w-4 mr-2" />
+                      Wishlist
+                    </Button>
+                    <Button variant="outline" className="flex-1" size="sm">
+                      <Share2 className="h-4 w-4 mr-2" />
+                      Share
+                    </Button>
+                  </div>
+
                   <Separator className="my-6" />
 
+                  {/* Course Includes */}
+                  <h4 className="font-semibold mb-4">This course includes:</h4>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center gap-3">
-                      <PlayCircle className="h-5 w-5 text-muted-foreground" />
-                      <span>{totalLessons} lessons</span>
+                      <PlayCircle className="h-5 w-5 text-primary" />
+                      <span>
+                        {Math.floor(totalDuration / 60)} hours of video content
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Clock className="h-5 w-5 text-muted-foreground" />
-                      <span>{Math.floor(totalDuration / 60)} hours of content</span>
+                      <FileText className="h-5 w-5 text-primary" />
+                      <span>{totalLessons > 0 ? totalLessons : 20} lessons</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <FileText className="h-5 w-5 text-muted-foreground" />
+                      <FileText className="h-5 w-5 text-primary" />
                       <span>Downloadable resources</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Award className="h-5 w-5 text-muted-foreground" />
+                      <Award className="h-5 w-5 text-primary" />
                       <span>Certificate of completion</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <DeliveryIcon className="h-5 w-5 text-muted-foreground" />
+                      <DeliveryIcon className="h-5 w-5 text-primary" />
                       <span>{deliveryInfo.label} Training</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <SessionIcon className="h-5 w-5 text-muted-foreground" />
+                      <SessionIcon className="h-5 w-5 text-primary" />
                       <span>{sessionInfo.label} Sessions</span>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Course Content */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-8">
-            {/* What You'll Learn */}
-            <Card>
-              <CardHeader>
-                <CardTitle>What You&apos;ll Learn</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {[
-                    "Master core concepts and fundamentals",
-                    "Build real-world projects and applications",
-                    "Learn industry best practices",
-                    "Develop problem-solving skills",
-                    "Get hands-on practical experience",
-                    "Earn a certificate of completion",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
-                      <span className="text-sm">{item}</span>
+                    <div className="flex items-center gap-3">
+                      <Clock className="h-5 w-5 text-primary" />
+                      <span>Lifetime access</span>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                </CardContent>
+              </Card>
 
-            {/* Course Curriculum */}
-            {activeClass && activeClass.lessons.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Course Curriculum</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    {totalLessons} lessons • {Math.floor(totalDuration / 60)}h {totalDuration % 60}m total
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {activeClass.lessons.map((lesson, index) => (
-                      <div
-                        key={lesson.id}
-                        className="flex items-center justify-between rounded-lg border p-3"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-medium">
-                            {index + 1}
+              {/* Related Courses */}
+              {relatedCourses.length > 0 && (
+                <Card>
+                  <CardContent className="p-6">
+                    <h4 className="font-semibold mb-4">Related Courses</h4>
+                    <div className="space-y-4">
+                      {relatedCourses.map((related) => (
+                        <Link
+                          key={related.id}
+                          href={`/courses/${related.slug}`}
+                          className="flex items-center gap-3 rounded-lg border p-3 hover:bg-accent transition-colors"
+                        >
+                          <div className="relative h-12 w-16 rounded bg-muted shrink-0 overflow-hidden">
+                            {related.thumbnail ? (
+                              <Image
+                                src={related.thumbnail}
+                                alt={related.title}
+                                fill
+                                className="rounded object-cover"
+                              />
+                            ) : (
+                              <div className="h-full w-full flex items-center justify-center">
+                                <GraduationCap className="h-6 w-6 text-muted-foreground" />
+                              </div>
+                            )}
                           </div>
-                          <span className="font-medium">{lesson.title}</span>
-                        </div>
-                        <span className="text-sm text-muted-foreground">
-                          {lesson.duration} min
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Instructor */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Instructor</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-start gap-4">
-                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/20 to-purple-600/20 flex items-center justify-center">
-                    {course.createdBy.image ? (
-                      <Image
-                        src={course.createdBy.image}
-                        alt={course.createdBy.name || "Instructor"}
-                        width={64}
-                        height={64}
-                        className="rounded-full object-cover"
-                      />
-                    ) : (
-                      <User className="h-8 w-8 text-primary/60" />
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">
-                      {course.createdBy.name || "Unknown Instructor"}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Expert Instructor
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Experienced professional with years of teaching and industry experience.
-                      Passionate about helping students achieve their learning goals.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Course Tags */}
-            {course.tags && course.tags.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topics Covered</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {course.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Related Courses */}
-            {relatedCourses.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Related Courses</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {relatedCourses.map((related) => (
-                    <Link
-                      key={related.id}
-                      href={`/courses/${related.slug}`}
-                      className="flex items-center gap-3 rounded-lg border p-3 hover:bg-accent transition-colors"
-                    >
-                      <div className="relative h-12 w-16 rounded bg-muted shrink-0">
-                        {related.thumbnail ? (
-                          <Image
-                            src={related.thumbnail}
-                            alt={related.title}
-                            fill
-                            className="rounded object-cover"
-                          />
-                        ) : (
-                          <div className="h-full w-full flex items-center justify-center">
-                            <GraduationCap className="h-6 w-6 text-muted-foreground" />
+                          <div className="flex-1 min-w-0">
+                            <h5 className="font-medium text-sm line-clamp-2">
+                              {related.title}
+                            </h5>
+                            <p className="text-sm text-primary font-medium">
+                              {related.price && Number(related.price) > 0
+                                ? `$${Number(related.price)}`
+                                : "Free"}
+                            </p>
                           </div>
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-sm line-clamp-2">
-                          {related.title}
-                        </h4>
-                        <p className="text-sm text-primary font-medium">
-                          {related.price && Number(related.price) > 0
-                            ? `$${Number(related.price)}`
-                            : "Free"}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
+                        </Link>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
           </div>
         </div>
       </div>

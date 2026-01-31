@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trainer Guide - LearnHub Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span class="logo-text">LearnHub</span>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+      <div class="sidebar-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        User Guide
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><button class="nav-item" data-section="getting-started"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path></svg>Getting Started</button><div class="nav-children hidden" id="getting-started-children"><a href="index.html" class="nav-child">Introduction</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="learner-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>Learner Guide</button><div class="nav-children hidden" id="learner-guide-children"><a href="learner-guide.html" class="nav-child">Dashboard</a></div></div>
+        <div class="nav-section"><button class="nav-item active" data-section="trainer-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>Trainer Guide</button><div class="nav-children" id="trainer-guide-children"><a href="#dashboard" class="nav-child active">Dashboard</a><a href="#classes" class="nav-child">Managing Classes</a><a href="#grading" class="nav-child">Grading</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="features"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Features</button><div class="nav-children hidden" id="features-children"><a href="features.html" class="nav-child">Overview</a></div></div>
+        <div class="nav-section"><button class="nav-item" data-section="faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path></svg>FAQ</button><div class="nav-children hidden" id="faq-children"><a href="faq.html" class="nav-child">Questions</a></div></div>
+      </nav>
+      <div class="sidebar-footer"><a href="https://ai-lms-xi.vercel.app" class="back-to-app" target="_blank">Open LearnHub App</a></div>
+    </aside>
+    <div class="mobile-header">
+      <button class="menu-toggle" id="menuToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <a href="index.html" class="logo"><span class="logo-text">LearnHub Docs</span></a>
+      <button class="theme-toggle" id="mobileThemeToggle"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+    </div>
+    <main class="main-content">
+      <div class="content-wrapper">
+        <nav class="breadcrumb"><a href="index.html">Docs</a><span>/</span><span>Trainer Guide</span></nav>
+        <article class="article">
+          <h1 id="dashboard">Trainer Guide</h1>
+          <p class="lead">Learn how to manage classes, grade assignments, and track student progress as a trainer.</p>
+          <div class="info-box"><div class="info-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="info-box-content"><strong>Demo Account</strong><p>Try the trainer experience: <code>trainer@learnhub.com</code> / <code>admin123</code></p></div></div>
+          <h2>Your Dashboard</h2>
+          <p>The Trainer Dashboard gives you an overview of your teaching activities:</p>
+          <div class="feature-grid">
+            <div class="feature-card"><div class="feature-icon ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div><h3>Active Classes</h3><p>View and manage all classes you're currently teaching.</p></div>
+            <div class="feature-card"><div class="feature-icon gamification"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><h3>Pending Submissions</h3><p>See assignments waiting for your review and grading.</p></div>
+            <div class="feature-card"><div class="feature-icon roles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div><h3>Student Progress</h3><p>Track overall progress across all your students.</p></div>
+            <div class="feature-card"><div class="feature-icon theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div><h3>Schedule</h3><p>View upcoming class sessions and deadlines.</p></div>
+          </div>
+          <h2 id="classes">Managing Classes</h2>
+          <p>Each course can have multiple class cohorts. As a trainer, you can:</p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li>View enrolled students and their contact information</li><li>Create and manage lessons within your classes</li><li>Upload course materials (videos, PDFs, documents)</li><li>Set assignment due dates</li><li>Track overall class progress</li></ul>
+          <h2 id="grading">Grading Assignments</h2>
+          <p>Review and grade student submissions:</p>
+          <div class="steps">
+            <div class="step"><div class="step-number">1</div><div class="step-content"><h4>Review Submissions</h4><p>Access pending submissions from your dashboard or the Grading section.</p></div></div>
+            <div class="step"><div class="step-number">2</div><div class="step-content"><h4>Evaluate Work</h4><p>Review the student's submission content and any attached files.</p></div></div>
+            <div class="step"><div class="step-number">3</div><div class="step-content"><h4>Assign Score</h4><p>Enter a score (0-100) based on the assignment rubric.</p></div></div>
+            <div class="step"><div class="step-number">4</div><div class="step-content"><h4>Provide Feedback</h4><p>Add constructive feedback to help students improve.</p></div></div>
+          </div>
+          <h2>AI Assistant for Trainers</h2>
+          <p>The AI assistant can help trainers with:</p>
+          <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted-foreground);"><li>Generating quiz questions for lessons</li><li>Creating grading rubrics</li><li>Drafting feedback templates</li><li>Identifying common student struggles</li><li>Suggesting lesson improvements</li></ul>
+          <div class="next-links"><a href="admin-guide.html" class="next-link"><div class="next-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><div class="next-link-content"><strong>Admin Guide</strong><p>Learn about user and course management</p></div><svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a></div>
+        </article>
+        <footer class="content-footer"><p>&copy; 2026 LearnHub</p><div class="footer-links"><a href="https://github.com/alfredang/ai-lms" target="_blank">GitHub</a><a href="https://ai-lms-xi.vercel.app" target="_blank">Live Demo</a></div></footer>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

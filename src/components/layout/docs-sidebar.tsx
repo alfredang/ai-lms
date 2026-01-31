@@ -18,6 +18,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface NavItem {
   name: string;
@@ -178,9 +179,12 @@ export function DocsSidebar() {
   return (
     <aside className="flex h-full w-64 flex-col border-r bg-card">
       {/* Logo */}
-      <div className="flex h-16 items-center gap-2 border-b px-6">
-        <GraduationCap className="h-8 w-8 text-primary" />
-        <span className="text-xl font-bold">LearnHub</span>
+      <div className="flex h-16 items-center justify-between border-b px-6">
+        <Link href="/" className="flex items-center gap-2">
+          <GraduationCap className="h-8 w-8 text-primary" />
+          <span className="text-xl font-bold">LearnHub</span>
+        </Link>
+        <ThemeToggle />
       </div>
 
       {/* Docs Title */}

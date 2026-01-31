@@ -36,11 +36,17 @@ const sessionLabels: Record<string, string> = {
   VIRTUAL: "Virtual",
 };
 
-async function getCourses(categorySlug?: string) {
+async function getCourses(categorySlug?: string, searchQuery?: string) {
   const courses = await prisma.course.findMany({
     where: {
       isPublished: true,
       ...(categorySlug && { category: { slug: categorySlug } }),
+      ...(searchQuery && {
+        OR: [
+          { title: { contains: searchQuery, mode: "insensitive" } },
+          { description: { contains: searchQuery, mode: "insensitive" } },
+        ],
+      }),
     },
     include: {
       category: true,
@@ -97,11 +103,11 @@ async function getCategories() {
 export default async function CoursesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; search?: string }>;
 }) {
   const params = await searchParams;
   const [courses, categories] = await Promise.all([
-    getCourses(params.category),
+    getCourses(params.category, params.search),
     getCategories(),
   ]);
 
@@ -112,12 +118,18 @@ export default async function CoursesPage({
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          {currentCategory ? currentCategory.name : "Explore Our Courses"}
+          {params.search
+            ? `Search Results for "${params.search}"`
+            : currentCategory
+              ? currentCategory.name
+              : "Explore Our Courses"}
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-          {currentCategory
-            ? `Discover our top ${currentCategory.name.toLowerCase()} courses designed by industry experts.`
-            : "Discover comprehensive training programs designed to advance your career."}
+          {params.search
+            ? `Found ${courses.length} course${courses.length !== 1 ? "s" : ""} matching your search.`
+            : currentCategory
+              ? `Discover our top ${currentCategory.name.toLowerCase()} courses designed by industry experts.`
+              : "Discover comprehensive training programs designed to advance your career."}
         </p>
       </div>
 
@@ -148,6 +160,7 @@ export default async function CoursesPage({
       {/* Course Count */}
       <div className="mt-8 text-center text-sm text-muted-foreground">
         Showing {courses.length} course{courses.length !== 1 ? "s" : ""}
+        {params.search && ` for "${params.search}"`}
         {currentCategory && ` in ${currentCategory.name}`}
       </div>
 
@@ -250,11 +263,13 @@ export default async function CoursesPage({
           <BarChart3 className="mx-auto h-12 w-12 text-muted-foreground/50" />
           <h3 className="mt-4 text-lg font-medium">No courses found</h3>
           <p className="mt-2 text-sm text-muted-foreground">
-            {params.category
-              ? "No courses in this category yet. Check back soon!"
-              : "Courses will be available soon."}
+            {params.search
+              ? `No courses match "${params.search}". Try a different search term.`
+              : params.category
+                ? "No courses in this category yet. Check back soon!"
+                : "Courses will be available soon."}
           </p>
-          {params.category && (
+          {(params.category || params.search) && (
             <Button asChild className="mt-4">
               <Link href="/courses">View All Courses</Link>
             </Button>

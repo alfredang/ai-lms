@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { GraduationCap, Menu, X, Bell, Search } from "lucide-react";
 import { useState } from "react";
@@ -15,8 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { LoginModal } from "@/components/auth/login-modal";
-import { RegisterModal } from "@/components/auth/register-modal";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navigation = [
   { name: "Courses", href: "/courses" },
@@ -26,8 +26,18 @@ const navigation = [
 ];
 
 export function Header() {
+  const router = useRouter();
   const { data: session, status } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/courses?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+    }
+  };
 
   const getDashboardLink = () => {
     if (!session?.user?.role) return "/learner";
@@ -55,7 +65,8 @@ export function Header() {
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
@@ -86,14 +97,19 @@ export function Header() {
         {/* Search and Auth */}
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
           {/* Search */}
-          <div className="relative w-64">
+          <form onSubmit={handleSearch} className="relative w-64">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
               placeholder="Search courses..."
               className="pl-9"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </div>
+          </form>
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {status === "loading" ? (
             <div className="h-10 w-10 animate-pulse rounded-full bg-muted" />
@@ -155,12 +171,12 @@ export function Header() {
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <LoginModal>
-                <Button variant="ghost">Log in</Button>
-              </LoginModal>
-              <RegisterModal>
-                <Button>Get Started</Button>
-              </RegisterModal>
+              <Button variant="ghost" asChild>
+                <Link href="/login">Log in</Link>
+              </Button>
+              <Button asChild>
+                <Link href="/register">Get Started</Link>
+              </Button>
             </div>
           )}
         </div>
@@ -202,20 +218,20 @@ export function Header() {
                 </>
               ) : (
                 <>
-                  <LoginModal>
-                    <button
-                      className="block w-full rounded-lg px-3 py-2 text-left text-base font-medium hover:bg-accent"
-                    >
-                      Log in
-                    </button>
-                  </LoginModal>
-                  <RegisterModal>
-                    <button
-                      className="block w-full rounded-lg px-3 py-2 text-left text-base font-medium text-primary hover:bg-accent"
-                    >
-                      Get Started
-                    </button>
-                  </RegisterModal>
+                  <Link
+                    href="/login"
+                    className="block w-full rounded-lg px-3 py-2 text-left text-base font-medium hover:bg-accent"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="block w-full rounded-lg px-3 py-2 text-left text-base font-medium text-primary hover:bg-accent"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Get Started
+                  </Link>
                 </>
               )}
             </div>

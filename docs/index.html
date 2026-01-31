@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnHub Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span class="logo-text">LearnHub</span>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="sidebar-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        User Guide
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <button class="nav-item active" data-section="getting-started">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+            Getting Started
+          </button>
+          <div class="nav-children" id="getting-started-children">
+            <a href="#introduction" class="nav-child active">Introduction</a>
+            <a href="#quick-start" class="nav-child">Quick Start</a>
+            <a href="#demo-accounts" class="nav-child">Demo Accounts</a>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <button class="nav-item" data-section="learner-guide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+            Learner Guide
+          </button>
+          <div class="nav-children hidden" id="learner-guide-children">
+            <a href="learner-guide.html#dashboard" class="nav-child">Dashboard</a>
+            <a href="learner-guide.html#enrolling" class="nav-child">Enrolling in Courses</a>
+            <a href="learner-guide.html#progress" class="nav-child">Tracking Progress</a>
+            <a href="learner-guide.html#gamification" class="nav-child">XP & Badges</a>
+            <a href="learner-guide.html#ai-assistant" class="nav-child">AI Assistant</a>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <button class="nav-item" data-section="trainer-guide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            Trainer Guide
+          </button>
+          <div class="nav-children hidden" id="trainer-guide-children">
+            <a href="trainer-guide.html#dashboard" class="nav-child">Dashboard</a>
+            <a href="trainer-guide.html#classes" class="nav-child">Managing Classes</a>
+            <a href="trainer-guide.html#grading" class="nav-child">Grading Assignments</a>
+            <a href="trainer-guide.html#students" class="nav-child">Student Progress</a>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <button class="nav-item" data-section="admin-guide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Admin Guide
+          </button>
+          <div class="nav-children hidden" id="admin-guide-children">
+            <a href="admin-guide.html#dashboard" class="nav-child">Dashboard</a>
+            <a href="admin-guide.html#users" class="nav-child">User Management</a>
+            <a href="admin-guide.html#courses" class="nav-child">Course Management</a>
+            <a href="admin-guide.html#analytics" class="nav-child">Analytics</a>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <button class="nav-item" data-section="superadmin-guide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Superadmin Guide
+          </button>
+          <div class="nav-children hidden" id="superadmin-guide-children">
+            <a href="superadmin-guide.html#dashboard" class="nav-child">Dashboard</a>
+            <a href="superadmin-guide.html#ai-settings" class="nav-child">AI Configuration</a>
+            <a href="superadmin-guide.html#api-keys" class="nav-child">API Keys</a>
+            <a href="superadmin-guide.html#payments" class="nav-child">Payment Settings</a>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <button class="nav-item" data-section="features">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Features
+          </button>
+          <div class="nav-children hidden" id="features-children">
+            <a href="features.html#ai-chat" class="nav-child">AI Chat Assistant</a>
+            <a href="features.html#gamification" class="nav-child">Gamification</a>
+            <a href="features.html#themes" class="nav-child">Dark/Light Mode</a>
+            <a href="features.html#courses" class="nav-child">Course Formats</a>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <button class="nav-item" data-section="faq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            FAQ
+          </button>
+          <div class="nav-children hidden" id="faq-children">
+            <a href="faq.html#general" class="nav-child">General</a>
+            <a href="faq.html#account" class="nav-child">Account</a>
+            <a href="faq.html#courses" class="nav-child">Courses</a>
+            <a href="faq.html#technical" class="nav-child">Technical</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="https://ai-lms-xi.vercel.app" class="back-to-app" target="_blank">
+          Open LearnHub App
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="menu-toggle" id="menuToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <a href="/" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg>
+        <span class="logo-text">LearnHub Docs</span>
+      </a>
+      <button class="theme-toggle" id="mobileThemeToggle">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-wrapper">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+          <a href="index.html">Docs</a>
+          <span>/</span>
+          <span>Getting Started</span>
+        </nav>
+
+        <!-- Page Content -->
+        <article class="article">
+          <h1 id="introduction">Welcome to LearnHub</h1>
+          <p class="lead">LearnHub is an AI-powered Learning Management System designed to make learning engaging, personalized, and effective.</p>
+
+          <div class="info-box">
+            <div class="info-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </div>
+            <div class="info-box-content">
+              <strong>Live Demo</strong>
+              <p>Try LearnHub now at <a href="https://ai-lms-xi.vercel.app" target="_blank">ai-lms-xi.vercel.app</a></p>
+            </div>
+          </div>
+
+          <h2>Key Features</h2>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon ai">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 8V4H8"></path>
+                  <rect x="8" y="8" width="8" height="8" rx="1"></rect>
+                  <path d="M4 12h4"></path>
+                  <path d="M16 12h4"></path>
+                  <path d="M12 16v4"></path>
+                </svg>
+              </div>
+              <h3>AI-Powered Learning</h3>
+              <p>Get personalized help from an AI assistant that understands your course context.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon gamification">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                  <path d="M4 22h16"></path>
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+              </div>
+              <h3>Gamification</h3>
+              <p>Earn XP, unlock badges, and climb the leaderboard as you learn.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon roles">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3>Role-Based Access</h3>
+              <p>Four distinct roles with tailored dashboards: Learner, Trainer, Admin, Superadmin.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </div>
+              <h3>Dark/Light Mode</h3>
+              <p>Choose your preferred theme for comfortable viewing any time of day.</p>
+            </div>
+          </div>
+
+          <h2 id="quick-start">Quick Start</h2>
+          <p>Get started with LearnHub in just a few steps:</p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Visit the App</h4>
+                <p>Go to <a href="https://ai-lms-xi.vercel.app" target="_blank">ai-lms-xi.vercel.app</a></p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Choose Your Role</h4>
+                <p>Click "Log in" and select the Learn tab for Learner/Trainer or Admin tab for Admin/Superadmin</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Quick Login</h4>
+                <p>Click on a demo account card to instantly log in with demo credentials</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>Explore</h4>
+                <p>Browse courses, enroll, and start learning with AI assistance!</p>
+              </div>
+            </div>
+          </div>
+
+          <h2 id="demo-accounts">Demo Accounts</h2>
+          <p>All demo accounts use the password: <code>admin123</code></p>
+
+          <div class="accounts-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Email</th>
+                  <th>Dashboard</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge learner">Learner</span></td>
+                  <td><code>learner@learnhub.com</code></td>
+                  <td><code>/learner</code></td>
+                  <td>Enroll in courses, track progress, earn XP and badges</td>
+                </tr>
+                <tr>
+                  <td><span class="badge trainer">Trainer</span></td>
+                  <td><code>trainer@learnhub.com</code></td>
+                  <td><code>/trainer</code></td>
+                  <td>Manage classes, grade assignments, view student progress</td>
+                </tr>
+                <tr>
+                  <td><span class="badge admin">Admin</span></td>
+                  <td><code>administrator@learnhub.com</code></td>
+                  <td><code>/admin</code></td>
+                  <td>Manage users, courses, classes, and view analytics</td>
+                </tr>
+                <tr>
+                  <td><span class="badge superadmin">Superadmin</span></td>
+                  <td><code>admin@learnhub.com</code></td>
+                  <td><code>/superadmin</code></td>
+                  <td>Full system access, AI settings, API keys, payments</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Course Categories</h2>
+          <p>LearnHub offers courses across 7 categories with 21 courses total:</p>
+
+          <div class="category-grid">
+            <div class="category-item">
+              <span class="category-emoji">🤖</span>
+              <span>Gen AI & Agentic AI</span>
+            </div>
+            <div class="category-item">
+              <span class="category-emoji">💻</span>
+              <span>Full Stack & Vibe Coding</span>
+            </div>
+            <div class="category-item">
+              <span class="category-emoji">📈</span>
+              <span>Investment</span>
+            </div>
+            <div class="category-item">
+              <span class="category-emoji">🎯</span>
+              <span>Soft Skills</span>
+            </div>
+            <div class="category-item">
+              <span class="category-emoji">🏠</span>
+              <span>Real Estate</span>
+            </div>
+            <div class="category-item">
+              <span class="category-emoji">☁️</span>
+              <span>Cloud Computing</span>
+            </div>
+            <div class="category-item">
+              <span class="category-emoji">📣</span>
+              <span>Digital Marketing</span>
+            </div>
+          </div>
+
+          <h2>Next Steps</h2>
+          <p>Continue exploring the documentation:</p>
+
+          <div class="next-links">
+            <a href="learner-guide.html" class="next-link">
+              <div class="next-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </div>
+              <div class="next-link-content">
+                <strong>Learner Guide</strong>
+                <p>Learn how to enroll in courses, track progress, and earn rewards</p>
+              </div>
+              <svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+            <a href="features.html" class="next-link">
+              <div class="next-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <div class="next-link-content">
+                <strong>Features Overview</strong>
+                <p>Explore AI chat, gamification, themes, and more</p>
+              </div>
+              <svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Footer -->
+        <footer class="content-footer">
+          <p>&copy; 2026 LearnHub. Built with Next.js, Tailwind CSS, and AI.</p>
+          <div class="footer-links">
+            <a href="https://github.com/alfredang/ai-lms" target="_blank">GitHub</a>
+            <a href="https://ai-lms-xi.vercel.app" target="_blank">Live Demo</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -6,6 +6,8 @@ A modern, production-ready Learning Management System built with Next.js 14, fea
 
 **Demo Site**: [https://ai-lms-xi.vercel.app](https://ai-lms-xi.vercel.app)
 
+**User Guide**: [https://alfredang.github.io/ai-lms](https://alfredang.github.io/ai-lms) (GitHub Pages)
+
 ### Demo Credentials
 
 All demo accounts use the password: `admin123`
@@ -33,8 +35,10 @@ All demo accounts use the password: `admin123`
 - **Gamification**: XP points, badges, levels, and learning streaks
 - **Role-Based Access**: 4 distinct roles with separate dashboards
 - **Course Enrollment**: Full enrollment system with progress tracking
-- **Modern UI**: Clean, responsive design with dark mode support
+- **Dark/Light Mode**: Theme toggle in header with system preference detection
+- **Modern UI**: Clean, responsive design with Tailwind CSS
 - **Secure Authentication**: NextAuth with Google, GitHub OAuth, and credentials
+- **User Guide**: Comprehensive documentation hosted on GitHub Pages
 
 ### Course Categories (7 Categories, 21 Courses)
 - **Real Estate** - Property investment and home buying
@@ -234,7 +238,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 ## Project Structure
 
 ```
-/lms
+/ai-lms
 ├── prisma/
 │   ├── schema.prisma      # Database schema
 │   └── seed.ts            # Seed data
@@ -346,6 +350,8 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ### January 2026
 
+- **Theme Toggle**: Added dark/light mode toggle to header with Light, Dark, and System options
+- **GitHub Pages User Guide**: Comprehensive documentation with matching portal style at /docs
 - **Course Delivery Formats**: Added Instructor-Led/E-Learning and Classroom/Virtual tags
 - **Course Enrollment System**: Full enrollment flow from course detail page
 - **New Pages**: Added /accessibility and /sitemap pages
@@ -381,6 +387,37 @@ Make sure to set all required environment variables in your hosting platform:
 - `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` - Google OAuth
 - `AUTH_GITHUB_ID` / `AUTH_GITHUB_SECRET` - GitHub OAuth
 - `OPENAI_API_KEY` - For AI features
+
+## Documentation
+
+A comprehensive user guide is available as a GitHub Pages site:
+
+**URL**: [https://alfredang.github.io/ai-lms](https://alfredang.github.io/ai-lms)
+
+The documentation includes:
+- **Getting Started**: Quick start guide and demo accounts
+- **Learner Guide**: How to enroll, track progress, earn XP and badges
+- **Trainer Guide**: Managing classes, grading assignments
+- **Admin Guide**: User and course management
+- **Superadmin Guide**: AI configuration, API keys, payments
+- **Features**: AI chat, gamification, themes, course formats
+- **FAQ**: Common questions and answers
+
+### Running Docs Locally
+
+The docs are static HTML/CSS/JS files in the `/docs` folder. To view locally:
+1. Open `/docs/index.html` in a browser, or
+2. Use a local server: `npx serve docs`
+
+### GitHub Pages Deployment
+
+To enable GitHub Pages:
+1. Go to your repository Settings > Pages
+2. Under "Source", select "Deploy from a branch"
+3. Select "main" branch and "/docs" folder
+4. Click Save
+
+The docs will be available at `https://[username].github.io/[repo-name]/`
 
 ## Contributing
 
