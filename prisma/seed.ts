@@ -49,7 +49,11 @@ async function main() {
 
   const superadmin = await prisma.user.upsert({
     where: { email: "admin@learnhub.com" },
-    update: {},
+    update: {
+      name: "Super Admin",
+      password: hashedPassword,
+      roleId: superadminRole.id,
+    },
     create: {
       email: "admin@learnhub.com",
       name: "Super Admin",
@@ -155,7 +159,11 @@ async function main() {
   // Create demo admin
   const admin = await prisma.user.upsert({
     where: { email: "administrator@learnhub.com" },
-    update: {},
+    update: {
+      name: "Demo Admin",
+      password: hashedPassword,
+      roleId: adminRole.id,
+    },
     create: {
       email: "administrator@learnhub.com",
       name: "Demo Admin",
@@ -173,7 +181,11 @@ async function main() {
   // Create demo learner
   const learner = await prisma.user.upsert({
     where: { email: "learner@learnhub.com" },
-    update: {},
+    update: {
+      name: "Demo Learner",
+      password: hashedPassword,
+      roleId: learnerRole.id,
+    },
     create: {
       email: "learner@learnhub.com",
       name: "Demo Learner",
