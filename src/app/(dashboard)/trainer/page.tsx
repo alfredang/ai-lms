@@ -103,7 +103,7 @@ export default async function TrainerDashboard() {
           <CardContent>
             <div className="text-2xl font-bold">{data.activeClasses}</div>
             <p className="text-xs text-muted-foreground">
-              Classes you're teaching
+              Classes you&apos;re teaching
             </p>
           </CardContent>
         </Card>

@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { DaysRemaining } from "@/components/dashboard/days-remaining";
 import Link from "next/link";
 import {
   Users,
@@ -235,15 +236,7 @@ export default async function TrainerClassPage({ params }: PageProps) {
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {Math.max(
-                0,
-                Math.ceil(
-                  (classData.endDate.getTime() - Date.now()) /
-                    (1000 * 60 * 60 * 24)
-                )
-              )}
-            </div>
+            <DaysRemaining endDate={classData.endDate} />
             <p className="text-xs text-muted-foreground">Days until end</p>
           </CardContent>
         </Card>
