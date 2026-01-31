@@ -176,23 +176,13 @@ async function main() {
   console.log("Creating categories...");
   const categories = await Promise.all([
     prisma.category.upsert({
-      where: { slug: "gen-ai-agentic-ai" },
-      update: { name: "Gen AI & Agentic AI", icon: "🤖" },
+      where: { slug: "real-estate" },
+      update: { name: "Real Estate", icon: "🏠" },
       create: {
-        name: "Gen AI & Agentic AI",
-        slug: "gen-ai-agentic-ai",
-        description: "Learn generative AI, LLMs, and building autonomous AI agents",
-        icon: "🤖",
-      },
-    }),
-    prisma.category.upsert({
-      where: { slug: "vibe-coding" },
-      update: { name: "Vibe Coding", icon: "💻" },
-      create: {
-        name: "Vibe Coding",
-        slug: "vibe-coding",
-        description: "Modern development with AI-powered coding tools",
-        icon: "💻",
+        name: "Real Estate",
+        slug: "real-estate",
+        description: "Property investment, home buying, and real estate development strategies",
+        icon: "🏠",
       },
     }),
     prisma.category.upsert({
@@ -201,7 +191,7 @@ async function main() {
       create: {
         name: "Investment",
         slug: "investment",
-        description: "Stock market, crypto, and real estate investment strategies",
+        description: "Stock market, crypto, and portfolio management strategies",
         icon: "📈",
       },
     }),
@@ -216,18 +206,38 @@ async function main() {
       },
     }),
     prisma.category.upsert({
-      where: { slug: "marketing" },
-      update: { name: "Marketing", icon: "📣" },
+      where: { slug: "gen-ai-agentic-ai" },
+      update: { name: "Gen AI & Agentic AI", icon: "🤖" },
       create: {
-        name: "Marketing",
-        slug: "marketing",
-        description: "Digital marketing, SEO, and social media strategies",
-        icon: "📣",
+        name: "Gen AI & Agentic AI",
+        slug: "gen-ai-agentic-ai",
+        description: "Learn generative AI, LLMs, and building autonomous AI agents",
+        icon: "🤖",
+      },
+    }),
+    prisma.category.upsert({
+      where: { slug: "full-stack-vibe-coding" },
+      update: { name: "Full Stack & Vibe Coding", icon: "💻" },
+      create: {
+        name: "Full Stack & Vibe Coding",
+        slug: "full-stack-vibe-coding",
+        description: "Modern full-stack development with AI-powered coding tools",
+        icon: "💻",
+      },
+    }),
+    prisma.category.upsert({
+      where: { slug: "cloud-computing" },
+      update: { name: "Cloud Computing", icon: "☁️" },
+      create: {
+        name: "Cloud Computing",
+        slug: "cloud-computing",
+        description: "AWS, Azure, GCP, and cloud architecture fundamentals",
+        icon: "☁️",
       },
     }),
   ]);
 
-  const [genAiCategory, vibeCodingCategory, investmentCategory, softSkillsCategory, marketingCategory] = categories;
+  const [realEstateCategory, investmentCategory, softSkillsCategory, genAiCategory, fullStackCategory, cloudCategory] = categories;
 
   // Create badges
   console.log("Creating badges...");
@@ -309,86 +319,45 @@ async function main() {
   console.log("Creating sample courses...");
 
   const courseDefinitions = [
-    // Gen AI & Agentic AI (3 courses)
+    // Real Estate (3 courses)
     {
-      title: "Building AI Agents with LangChain",
-      slug: "building-ai-agents-langchain",
-      description: "Learn to build powerful AI agents using LangChain, from basic concepts to advanced autonomous systems. Master chains, tools, and agent architectures.",
-      duration: 720, // 12 hours
-      difficulty: "INTERMEDIATE" as const,
-      price: 99,
-      thumbnail: "/courses/ai-agents.svg",
-      tags: ["langchain", "ai agents", "llm", "python"],
-      categoryId: genAiCategory.id,
-      createdById: sarahChen.id,
-      isFeatured: true,
-    },
-    {
-      title: "Prompt Engineering Masterclass",
-      slug: "prompt-engineering-masterclass",
-      description: "Master the art of prompt engineering to get the best results from ChatGPT, Claude, and other LLMs. Learn techniques for all use cases.",
-      duration: 480, // 8 hours
+      title: "First-Time Home Buyer Specialist",
+      slug: "first-time-home-buyer-specialist",
+      description: "Become an expert in guiding first-time buyers through the home purchasing process. Learn financing options, negotiation strategies, and market analysis.",
+      duration: 300, // 5 hours
       difficulty: "BEGINNER" as const,
       price: 79,
-      thumbnail: "/courses/prompt-eng.svg",
-      tags: ["prompt engineering", "chatgpt", "claude", "ai"],
-      categoryId: genAiCategory.id,
-      createdById: alexRodriguez.id,
+      thumbnail: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
+      tags: ["real estate", "home buying", "first-time buyer", "financing"],
+      categoryId: realEstateCategory.id,
+      createdById: demoTrainer.id,
       isFeatured: true,
     },
     {
-      title: "Claude & ChatGPT API Development",
-      slug: "claude-chatgpt-api-development",
-      description: "Build production-ready applications using the Claude and OpenAI APIs with best practices for error handling, rate limiting, and optimization.",
-      duration: 600, // 10 hours
-      difficulty: "INTERMEDIATE" as const,
-      price: 89,
-      thumbnail: "/courses/api-dev.svg",
-      tags: ["api", "claude", "openai", "python", "typescript"],
-      categoryId: genAiCategory.id,
-      createdById: sarahChen.id,
-      isFeatured: false,
-    },
-
-    // Vibe Coding (3 courses)
-    {
-      title: "Modern React with AI Tools",
-      slug: "modern-react-ai-tools",
-      description: "Learn modern React development enhanced with AI coding assistants for 10x productivity. Integrate Copilot, Cursor, and more into your workflow.",
-      duration: 900, // 15 hours
-      difficulty: "INTERMEDIATE" as const,
-      price: 119,
-      thumbnail: "/courses/react-ai.svg",
-      tags: ["react", "ai tools", "copilot", "cursor"],
-      categoryId: vibeCodingCategory.id,
-      createdById: emmaWilson.id,
-      isFeatured: true,
-    },
-    {
-      title: "Full-Stack Development with Cursor",
-      slug: "fullstack-development-cursor",
-      description: "Master full-stack development using Cursor AI to build applications faster than ever. From frontend to backend with AI assistance.",
-      duration: 1200, // 20 hours
+      title: "Luxury Real Estate Specialist",
+      slug: "luxury-real-estate-specialist",
+      description: "Specialize in high-end properties and affluent clients. Learn luxury market dynamics, exclusive marketing techniques, and white-glove service standards.",
+      duration: 420, // 7 hours
       difficulty: "ADVANCED" as const,
       price: 149,
-      thumbnail: "/courses/cursor-dev.svg",
-      tags: ["cursor", "fullstack", "ai coding", "typescript"],
-      categoryId: vibeCodingCategory.id,
-      createdById: emmaWilson.id,
-      isFeatured: false,
+      thumbnail: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
+      tags: ["luxury real estate", "high-net-worth", "premium properties"],
+      categoryId: realEstateCategory.id,
+      createdById: demoTrainer.id,
+      isFeatured: true,
     },
     {
-      title: "Building Apps with Claude Code",
-      slug: "building-apps-claude-code",
-      description: "Create complete applications from scratch using Claude Code's AI-powered development. Learn prompting strategies for code generation.",
-      duration: 600, // 10 hours
-      difficulty: "BEGINNER" as const,
-      price: 99,
-      thumbnail: "/courses/claude-code.svg",
-      tags: ["claude code", "ai development", "coding"],
-      categoryId: vibeCodingCategory.id,
-      createdById: alexRodriguez.id,
-      isFeatured: true,
+      title: "Real Estate Investment Analysis",
+      slug: "real-estate-investment-analysis",
+      description: "Advanced financial modeling for real estate investments. Learn cap rates, cash-on-cash returns, IRR calculations, and portfolio optimization.",
+      duration: 540, // 9 hours
+      difficulty: "ADVANCED" as const,
+      price: 129,
+      thumbnail: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=600&fit=crop",
+      tags: ["investment analysis", "financial modeling", "cap rate", "roi"],
+      categoryId: realEstateCategory.id,
+      createdById: davidChen.id,
+      isFeatured: false,
     },
 
     // Investment (3 courses)
@@ -399,11 +368,11 @@ async function main() {
       duration: 480, // 8 hours
       difficulty: "BEGINNER" as const,
       price: 69,
-      thumbnail: "/courses/stocks.svg",
+      thumbnail: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop",
       tags: ["stocks", "investing", "portfolio", "trading"],
       categoryId: investmentCategory.id,
       createdById: davidChen.id,
-      isFeatured: false,
+      isFeatured: true,
     },
     {
       title: "Crypto & DeFi Investing",
@@ -412,21 +381,21 @@ async function main() {
       duration: 720, // 12 hours
       difficulty: "INTERMEDIATE" as const,
       price: 89,
-      thumbnail: "/courses/crypto.svg",
+      thumbnail: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop",
       tags: ["crypto", "defi", "bitcoin", "ethereum"],
       categoryId: investmentCategory.id,
       createdById: davidChen.id,
       isFeatured: true,
     },
     {
-      title: "Real Estate Investment Strategies",
-      slug: "real-estate-investment-strategies",
-      description: "Comprehensive guide to real estate investing, from rental properties to REITs. Learn deal analysis, financing, and portfolio building.",
-      duration: 960, // 16 hours
-      difficulty: "ADVANCED" as const,
-      price: 129,
-      thumbnail: "/courses/real-estate.svg",
-      tags: ["real estate", "reits", "rental properties", "investing"],
+      title: "Dividend Income Strategies",
+      slug: "dividend-income-strategies",
+      description: "Build a passive income portfolio through dividend investing. Learn stock selection, reinvestment strategies, and tax optimization techniques.",
+      duration: 360, // 6 hours
+      difficulty: "INTERMEDIATE" as const,
+      price: 79,
+      thumbnail: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=600&fit=crop",
+      tags: ["dividends", "passive income", "portfolio", "investing"],
       categoryId: investmentCategory.id,
       createdById: davidChen.id,
       isFeatured: false,
@@ -440,7 +409,7 @@ async function main() {
       duration: 360, // 6 hours
       difficulty: "BEGINNER" as const,
       price: 59,
-      thumbnail: "/courses/leadership.svg",
+      thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
       tags: ["leadership", "management", "teamwork", "soft skills"],
       categoryId: softSkillsCategory.id,
       createdById: jenniferAdams.id,
@@ -453,7 +422,7 @@ async function main() {
       duration: 300, // 5 hours
       difficulty: "BEGINNER" as const,
       price: 49,
-      thumbnail: "/courses/communication.svg",
+      thumbnail: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop",
       tags: ["communication", "presentation", "writing", "speaking"],
       categoryId: softSkillsCategory.id,
       createdById: jenniferAdams.id,
@@ -466,52 +435,134 @@ async function main() {
       duration: 480, // 8 hours
       difficulty: "INTERMEDIATE" as const,
       price: 79,
-      thumbnail: "/courses/negotiation.svg",
+      thumbnail: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
       tags: ["negotiation", "persuasion", "influence", "business"],
       categoryId: softSkillsCategory.id,
       createdById: jenniferAdams.id,
+      isFeatured: true,
+    },
+
+    // Gen AI & Agentic AI (3 courses)
+    {
+      title: "Building AI Agents with LangChain",
+      slug: "building-ai-agents-langchain",
+      description: "Learn to build powerful AI agents using LangChain, from basic concepts to advanced autonomous systems. Master chains, tools, and agent architectures.",
+      duration: 720, // 12 hours
+      difficulty: "INTERMEDIATE" as const,
+      price: 99,
+      thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+      tags: ["langchain", "ai agents", "llm", "python"],
+      categoryId: genAiCategory.id,
+      createdById: sarahChen.id,
+      isFeatured: true,
+    },
+    {
+      title: "Prompt Engineering Masterclass",
+      slug: "prompt-engineering-masterclass",
+      description: "Master the art of prompt engineering to get the best results from ChatGPT, Claude, and other LLMs. Learn techniques for all use cases.",
+      duration: 480, // 8 hours
+      difficulty: "BEGINNER" as const,
+      price: 79,
+      thumbnail: "https://images.unsplash.com/photo-1684163761883-4c0e76cb7d8a?w=800&h=600&fit=crop",
+      tags: ["prompt engineering", "chatgpt", "claude", "ai"],
+      categoryId: genAiCategory.id,
+      createdById: alexRodriguez.id,
+      isFeatured: true,
+    },
+    {
+      title: "Claude & ChatGPT API Development",
+      slug: "claude-chatgpt-api-development",
+      description: "Build production-ready applications using the Claude and OpenAI APIs with best practices for error handling, rate limiting, and optimization.",
+      duration: 600, // 10 hours
+      difficulty: "INTERMEDIATE" as const,
+      price: 89,
+      thumbnail: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop",
+      tags: ["api", "claude", "openai", "python", "typescript"],
+      categoryId: genAiCategory.id,
+      createdById: sarahChen.id,
       isFeatured: false,
     },
 
-    // Marketing (3 courses)
+    // Full Stack & Vibe Coding (3 courses)
     {
-      title: "Digital Marketing Mastery",
-      slug: "digital-marketing-mastery",
-      description: "Complete digital marketing course covering SEO, PPC, social media, and email marketing. Build comprehensive marketing campaigns.",
-      duration: 840, // 14 hours
-      difficulty: "BEGINNER" as const,
-      price: 99,
-      thumbnail: "/courses/digital-marketing.svg",
-      tags: ["digital marketing", "seo", "ppc", "social media"],
-      categoryId: marketingCategory.id,
-      createdById: chrisTaylor.id,
+      title: "Modern React with AI Tools",
+      slug: "modern-react-ai-tools",
+      description: "Learn modern React development enhanced with AI coding assistants for 10x productivity. Integrate Copilot, Cursor, and more into your workflow.",
+      duration: 900, // 15 hours
+      difficulty: "INTERMEDIATE" as const,
+      price: 119,
+      thumbnail: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop",
+      tags: ["react", "ai tools", "copilot", "cursor"],
+      categoryId: fullStackCategory.id,
+      createdById: emmaWilson.id,
       isFeatured: true,
     },
     {
-      title: "Social Media Strategy",
-      slug: "social-media-strategy",
-      description: "Build a winning social media strategy that drives engagement and conversions. Master platforms from Instagram to TikTok to LinkedIn.",
-      duration: 600, // 10 hours
-      difficulty: "INTERMEDIATE" as const,
-      price: 79,
-      thumbnail: "/courses/social-media.svg",
-      tags: ["social media", "instagram", "tiktok", "content"],
-      categoryId: marketingCategory.id,
-      createdById: chrisTaylor.id,
+      title: "Full-Stack Development with Cursor",
+      slug: "fullstack-development-cursor",
+      description: "Master full-stack development using Cursor AI to build applications faster than ever. From frontend to backend with AI assistance.",
+      duration: 1200, // 20 hours
+      difficulty: "ADVANCED" as const,
+      price: 149,
+      thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+      tags: ["cursor", "fullstack", "ai coding", "typescript"],
+      categoryId: fullStackCategory.id,
+      createdById: emmaWilson.id,
       isFeatured: false,
     },
     {
-      title: "SEO & Content Marketing",
-      slug: "seo-content-marketing",
-      description: "Dominate search rankings and create content that attracts and converts. Learn keyword research, on-page SEO, link building, and content strategy.",
-      duration: 720, // 12 hours
+      title: "Building Apps with Claude Code",
+      slug: "building-apps-claude-code",
+      description: "Create complete applications from scratch using Claude Code AI-powered development. Learn prompting strategies for code generation.",
+      duration: 600, // 10 hours
+      difficulty: "BEGINNER" as const,
+      price: 99,
+      thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+      tags: ["claude code", "ai development", "coding"],
+      categoryId: fullStackCategory.id,
+      createdById: alexRodriguez.id,
+      isFeatured: true,
+    },
+
+    // Cloud Computing (3 courses)
+    {
+      title: "AWS Solutions Architect",
+      slug: "aws-solutions-architect",
+      description: "Prepare for the AWS Solutions Architect certification. Learn EC2, S3, VPC, Lambda, and design highly available, scalable architectures.",
+      duration: 960, // 16 hours
       difficulty: "INTERMEDIATE" as const,
-      price: 89,
-      thumbnail: "/courses/seo.svg",
-      tags: ["seo", "content marketing", "keywords", "blogging"],
-      categoryId: marketingCategory.id,
+      price: 129,
+      thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop",
+      tags: ["aws", "cloud", "solutions architect", "certification"],
+      categoryId: cloudCategory.id,
       createdById: chrisTaylor.id,
       isFeatured: true,
+    },
+    {
+      title: "Kubernetes & Container Orchestration",
+      slug: "kubernetes-container-orchestration",
+      description: "Master Kubernetes for container orchestration. Learn pods, deployments, services, Helm charts, and production-ready cluster management.",
+      duration: 840, // 14 hours
+      difficulty: "ADVANCED" as const,
+      price: 139,
+      thumbnail: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop",
+      tags: ["kubernetes", "docker", "containers", "devops"],
+      categoryId: cloudCategory.id,
+      createdById: chrisTaylor.id,
+      isFeatured: true,
+    },
+    {
+      title: "Serverless Architecture Patterns",
+      slug: "serverless-architecture-patterns",
+      description: "Build cost-effective serverless applications with AWS Lambda, API Gateway, and DynamoDB. Learn event-driven architecture and best practices.",
+      duration: 600, // 10 hours
+      difficulty: "INTERMEDIATE" as const,
+      price: 99,
+      thumbnail: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop",
+      tags: ["serverless", "lambda", "api gateway", "dynamodb"],
+      categoryId: cloudCategory.id,
+      createdById: chrisTaylor.id,
+      isFeatured: false,
     },
   ];
 
@@ -567,7 +618,7 @@ async function main() {
   console.log("- Superadmin: admin@learnhub.com / admin123");
   console.log("- Trainer: trainer@learnhub.com / admin123");
   console.log("- Learner: learner@learnhub.com / admin123");
-  console.log("\nCreated 15 sample courses across 5 categories!");
+  console.log("\nCreated 18 sample courses across 6 categories!");
 }
 
 main()

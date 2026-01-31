@@ -14,6 +14,13 @@ import {
   Brain,
   Clock,
   User,
+  Home,
+  TrendingUp,
+  MessageSquare,
+  Bot,
+  Code2,
+  Cloud,
+  type LucideIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -75,20 +82,22 @@ async function getCategoriesWithCounts() {
     },
   });
 
-  const categoryIcons: Record<string, { color: string; icon: string }> = {
-    "gen-ai-agentic-ai": { color: "bg-purple-500", icon: "🤖" },
-    "vibe-coding": { color: "bg-cyan-500", icon: "💻" },
-    "investment": { color: "bg-green-500", icon: "📈" },
-    "soft-skills": { color: "bg-orange-500", icon: "🎯" },
-    "marketing": { color: "bg-pink-500", icon: "📣" },
+  const categoryIcons: Record<string, { color: string; bgColor: string; icon: LucideIcon }> = {
+    "real-estate": { color: "text-emerald-400", bgColor: "bg-emerald-500/20", icon: Home },
+    "investment": { color: "text-green-400", bgColor: "bg-green-500/20", icon: TrendingUp },
+    "soft-skills": { color: "text-orange-400", bgColor: "bg-orange-500/20", icon: MessageSquare },
+    "gen-ai-agentic-ai": { color: "text-purple-400", bgColor: "bg-purple-500/20", icon: Bot },
+    "full-stack-vibe-coding": { color: "text-cyan-400", bgColor: "bg-cyan-500/20", icon: Code2 },
+    "cloud-computing": { color: "text-blue-400", bgColor: "bg-blue-500/20", icon: Cloud },
   };
 
   return categories.map((cat) => ({
     name: cat.name,
     slug: cat.slug,
     count: cat._count.courses,
-    color: categoryIcons[cat.slug]?.color || "bg-gray-500",
-    icon: categoryIcons[cat.slug]?.icon || "📚",
+    color: categoryIcons[cat.slug]?.color || "text-gray-400",
+    bgColor: categoryIcons[cat.slug]?.bgColor || "bg-gray-500/20",
+    Icon: categoryIcons[cat.slug]?.icon || BookOpen,
   }));
 }
 
@@ -271,7 +280,7 @@ export default async function HomePage() {
               learning path for your career goals.
             </p>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {categories.map((category) => (
               <Link
                 key={category.name}
@@ -281,9 +290,9 @@ export default async function HomePage() {
                 <Card className="transition-all hover:shadow-lg hover:border-primary">
                   <CardContent className="flex flex-col items-center gap-3 p-6 text-center">
                     <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-xl ${category.color} text-2xl`}
+                      className={`flex h-14 w-14 items-center justify-center rounded-xl ${category.bgColor}`}
                     >
-                      {category.icon}
+                      <category.Icon className={`h-7 w-7 ${category.color}`} />
                     </div>
                     <div>
                       <h3 className="font-semibold group-hover:text-primary">
