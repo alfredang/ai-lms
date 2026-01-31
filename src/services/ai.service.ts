@@ -44,13 +44,20 @@ Guidelines:
 };
 
 export class AIService {
-  private openai: OpenAI;
+  private _openai: OpenAI | null = null;
 
-  constructor() {
-    this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      baseURL: process.env.OPENAI_BASE_URL || "https://api.openai.com/v1",
-    });
+  private get openai(): OpenAI {
+    if (!this._openai) {
+      const apiKey = process.env.OPENAI_API_KEY;
+      if (!apiKey) {
+        throw new Error("OPENAI_API_KEY environment variable is not set");
+      }
+      this._openai = new OpenAI({
+        apiKey,
+        baseURL: process.env.OPENAI_BASE_URL || "https://api.openai.com/v1",
+      });
+    }
+    return this._openai;
   }
 
   /**
