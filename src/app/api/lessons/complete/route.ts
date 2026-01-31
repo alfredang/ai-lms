@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { gamificationService } from "@/services/gamification.service";
+import { GamificationService } from "@/services/gamification.service";
 
 export async function POST(req: Request) {
   try {
@@ -78,11 +78,11 @@ export async function POST(req: Request) {
 
     // Award XP for completing the lesson
     try {
-      await gamificationService.awardXP(session.user.id, {
-        amount: 50,
-        reason: "Completed a lesson",
-        metadata: { lessonId, enrollmentId },
-      });
+      await GamificationService.awardXP(
+        session.user.id,
+        "LESSON_COMPLETE",
+        { lessonId, enrollmentId }
+      );
     } catch (error) {
       console.error("Failed to award XP:", error);
       // Don't fail the request if XP awarding fails
