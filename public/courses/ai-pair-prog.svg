@@ -1,0 +1,31 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  <defs>
+    <linearGradient id="pairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Human silhouette -->
+  <circle cx="140" cy="100" r="30" fill="#4b5563"/>
+  <rect x="110" y="135" width="60" height="80" rx="10" fill="#4b5563"/>
+  <!-- Robot/AI silhouette -->
+  <rect x="230" y="75" width="50" height="50" rx="8" fill="#22d3ee"/>
+  <circle cx="245" cy="95" r="6" fill="#1a1a2e"/>
+  <circle cx="265" cy="95" r="6" fill="#1a1a2e"/>
+  <rect x="243" y="110" width="24" height="4" rx="2" fill="#1a1a2e"/>
+  <rect x="230" y="135" width="50" height="80" rx="8" fill="#a855f7"/>
+  <!-- Connection lines -->
+  <path d="M170 150 Q200 120 230 150" stroke="url(#pairGrad)" stroke-width="3" fill="none" stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <path d="M170 180 Q200 200 230 180" stroke="url(#pairGrad)" stroke-width="3" fill="none" stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" values="10;0" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <!-- Sparkles -->
+  <circle cx="200" cy="150" r="4" fill="#fbbf24"/>
+  <circle cx="190" cy="165" r="3" fill="#22d3ee"/>
+  <circle cx="210" cy="165" r="3" fill="#a855f7"/>
+  <!-- Text -->
+  <text x="200" y="260" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">AI Pair Programming</text>
+</svg>

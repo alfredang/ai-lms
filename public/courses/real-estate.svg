@@ -1,0 +1,37 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1a2332"/>
+  <defs>
+    <linearGradient id="estateGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <!-- Buildings skyline -->
+  <rect x="60" y="120" width="50" height="100" fill="#0ea5e9" opacity="0.8"/>
+  <rect x="65" y="130" width="15" height="20" fill="#1a2332"/>
+  <rect x="85" y="130" width="15" height="20" fill="#1a2332"/>
+  <rect x="65" y="160" width="15" height="20" fill="#1a2332"/>
+  <rect x="85" y="160" width="15" height="20" fill="#1a2332"/>
+  <rect x="120" y="80" width="60" height="140" fill="#22d3ee" opacity="0.9"/>
+  <rect x="130" y="90" width="15" height="20" fill="#1a2332"/>
+  <rect x="155" y="90" width="15" height="20" fill="#1a2332"/>
+  <rect x="130" y="120" width="15" height="20" fill="#1a2332"/>
+  <rect x="155" y="120" width="15" height="20" fill="#1a2332"/>
+  <rect x="130" y="150" width="15" height="20" fill="#1a2332"/>
+  <rect x="155" y="150" width="15" height="20" fill="#1a2332"/>
+  <rect x="190" y="100" width="45" height="120" fill="#0ea5e9" opacity="0.7"/>
+  <!-- House -->
+  <polygon points="290,130 250,100 210,130" fill="#f59e0b"/>
+  <rect x="220" y="130" width="60" height="50" fill="#fbbf24"/>
+  <rect x="235" y="150" width="20" height="30" fill="#92400e"/>
+  <rect x="265" y="140" width="12" height="15" fill="#0ea5e9"/>
+  <!-- Key icon -->
+  <circle cx="330" cy="100" r="15" stroke="#fbbf24" stroke-width="3" fill="none"/>
+  <line x1="345" y1="100" x2="370" y2="100" stroke="#fbbf24" stroke-width="3"/>
+  <line x1="360" y1="100" x2="360" y2="110" stroke="#fbbf24" stroke-width="3"/>
+  <line x1="370" y1="100" x2="370" y2="110" stroke="#fbbf24" stroke-width="3"/>
+  <!-- Ground -->
+  <rect x="40" y="220" width="320" height="10" fill="#10b981"/>
+  <!-- Text -->
+  <text x="200" y="265" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">Real Estate Investment</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0c0c1d"/>
+  <defs>
+    <linearGradient id="noCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <!-- Blocks -->
+  <rect x="100" y="60" width="80" height="40" rx="8" fill="#f472b6" opacity="0.9"/>
+  <rect x="200" y="60" width="100" height="40" rx="8" fill="#7c3aed" opacity="0.9"/>
+  <rect x="120" y="120" width="160" height="40" rx="8" fill="#22d3ee" opacity="0.9"/>
+  <rect x="80" y="180" width="100" height="40" rx="8" fill="#10b981" opacity="0.9"/>
+  <rect x="200" y="180" width="120" height="40" rx="8" fill="#f59e0b" opacity="0.9"/>
+  <!-- Connection arrows -->
+  <path d="M140 100 L140 120" stroke="url(#noCodeGrad)" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M250 100 L250 120" stroke="url(#noCodeGrad)" stroke-width="3"/>
+  <path d="M200 160 L130 180" stroke="url(#noCodeGrad)" stroke-width="3"/>
+  <path d="M200 160 L260 180" stroke="url(#noCodeGrad)" stroke-width="3"/>
+  <!-- AI brain icon -->
+  <circle cx="330" cy="120" r="35" stroke="url(#noCodeGrad)" stroke-width="3" fill="none"/>
+  <path d="M315 110 Q330 95 345 110 Q345 130 330 140 Q315 130 315 110" fill="#7c3aed" opacity="0.5"/>
+  <circle cx="322" cy="115" r="4" fill="#f472b6"/>
+  <circle cx="338" cy="115" r="4" fill="#f472b6"/>
+  <!-- Text -->
+  <text x="200" y="260" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">No-Code AI Apps</text>
+</svg>

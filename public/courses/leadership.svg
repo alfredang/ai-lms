@@ -1,0 +1,29 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1e1b4b"/>
+  <defs>
+    <linearGradient id="leadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <!-- Leader figure -->
+  <circle cx="200" cy="90" r="30" fill="url(#leadGrad)"/>
+  <rect x="170" y="125" width="60" height="75" rx="10" fill="url(#leadGrad)"/>
+  <!-- Crown -->
+  <polygon points="170,65 185,80 200,65 215,80 230,65 225,55 175,55" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <!-- Team members -->
+  <g opacity="0.7">
+    <circle cx="100" cy="140" r="20" fill="#818cf8"/>
+    <rect x="80" y="165" width="40" height="50" rx="8" fill="#818cf8"/>
+    <circle cx="300" cy="140" r="20" fill="#818cf8"/>
+    <rect x="280" y="165" width="40" height="50" rx="8" fill="#818cf8"/>
+  </g>
+  <!-- Connection lines -->
+  <line x1="170" y1="150" x2="120" y2="150" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="230" y1="150" x2="280" y2="150" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- Star badges -->
+  <polygon points="100,130 103,140 113,140 105,146 108,156 100,150 92,156 95,146 87,140 97,140" fill="#fbbf24" transform="scale(0.6) translate(67,-50)"/>
+  <polygon points="300,130 303,140 313,140 305,146 308,156 300,150 292,156 295,146 287,140 297,140" fill="#fbbf24" transform="scale(0.6) translate(400,-50)"/>
+  <!-- Text -->
+  <text x="200" y="265" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">Leadership Excellence</text>
+</svg>

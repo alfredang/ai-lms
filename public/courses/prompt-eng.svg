@@ -1,0 +1,23 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg2)"/>
+  <!-- Chat bubbles -->
+  <rect x="250" y="100" width="200" height="60" rx="30" fill="white"/>
+  <polygon points="280,160 260,180 300,160" fill="white"/>
+  <rect x="350" y="180" width="250" height="80" rx="40" fill="rgba(255,255,255,0.2)"/>
+  <polygon points="560,260 580,290 520,260" fill="rgba(255,255,255,0.2)"/>
+  <rect x="200" y="280" width="180" height="50" rx="25" fill="rgba(255,255,255,0.15)"/>
+  <!-- Typing dots -->
+  <circle cx="300" cy="130" r="6" fill="#8b5cf6"/>
+  <circle cx="320" cy="130" r="6" fill="#8b5cf6"/>
+  <circle cx="340" cy="130" r="6" fill="#8b5cf6"/>
+  <!-- Sparkles -->
+  <path d="M600 80 L605 95 L620 100 L605 105 L600 120 L595 105 L580 100 L595 95 Z" fill="#fbbf24"/>
+  <path d="M180 200 L183 210 L193 213 L183 216 L180 226 L177 216 L167 213 L177 210 Z" fill="#fbbf24"/>
+  <path d="M650 300 L653 310 L663 313 L653 316 L650 326 L647 316 L637 313 L647 310 Z" fill="rgba(255,255,255,0.6)"/>
+</svg>

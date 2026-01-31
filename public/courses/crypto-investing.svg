@@ -1,0 +1,35 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0d0d1a"/>
+  <defs>
+    <linearGradient id="cryptoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7931a"/>
+      <stop offset="50%" stop-color="#627eea"/>
+      <stop offset="100%" stop-color="#00d395"/>
+    </linearGradient>
+  </defs>
+  <!-- Bitcoin -->
+  <circle cx="130" cy="120" r="45" fill="#f7931a" opacity="0.2"/>
+  <circle cx="130" cy="120" r="35" stroke="#f7931a" stroke-width="3" fill="none"/>
+  <text x="130" y="130" font-family="system-ui" font-size="32" fill="#f7931a" text-anchor="middle" font-weight="bold">B</text>
+  <!-- Ethereum -->
+  <circle cx="200" cy="150" r="40" fill="#627eea" opacity="0.2"/>
+  <polygon points="200,100 230,150 200,170 170,150" fill="none" stroke="#627eea" stroke-width="3"/>
+  <polygon points="200,130 220,145 200,155 180,145" fill="#627eea" opacity="0.5"/>
+  <!-- Generic crypto -->
+  <circle cx="270" cy="130" r="35" fill="#00d395" opacity="0.2"/>
+  <circle cx="270" cy="130" r="25" stroke="#00d395" stroke-width="3" fill="none"/>
+  <circle cx="270" cy="130" r="12" fill="#00d395"/>
+  <!-- Connection lines -->
+  <line x1="165" y1="120" x2="175" y2="140" stroke="url(#cryptoGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="230" y1="145" x2="245" y2="135" stroke="url(#cryptoGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- Network nodes -->
+  <circle cx="100" cy="200" r="6" fill="#f7931a"/>
+  <circle cx="160" cy="210" r="6" fill="#627eea"/>
+  <circle cx="240" cy="205" r="6" fill="#00d395"/>
+  <circle cx="300" cy="195" r="6" fill="#f7931a"/>
+  <line x1="106" y1="200" x2="154" y2="210" stroke="#627eea" stroke-width="1" opacity="0.5"/>
+  <line x1="166" y1="210" x2="234" y2="205" stroke="#00d395" stroke-width="1" opacity="0.5"/>
+  <line x1="246" y1="205" x2="294" y2="195" stroke="#f7931a" stroke-width="1" opacity="0.5"/>
+  <!-- Text -->
+  <text x="200" y="265" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">Crypto &amp; Web3 Investing</text>
+</svg>

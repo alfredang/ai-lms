@@ -1,0 +1,32 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1e1e2e"/>
+  <defs>
+    <linearGradient id="dmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="50%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <!-- Browser window -->
+  <rect x="80" y="50" width="240" height="160" rx="8" fill="#2a2a3e" stroke="url(#dmGrad)" stroke-width="2"/>
+  <rect x="80" y="50" width="240" height="25" rx="8" fill="#3a3a4e"/>
+  <circle cx="100" cy="62" r="5" fill="#ef4444"/>
+  <circle cx="118" cy="62" r="5" fill="#eab308"/>
+  <circle cx="136" cy="62" r="5" fill="#22c55e"/>
+  <!-- Graph inside -->
+  <polyline points="100,180 130,150 160,160 190,120 220,130 250,100 280,110" fill="none" stroke="url(#dmGrad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Data points -->
+  <circle cx="130" cy="150" r="5" fill="#f472b6"/>
+  <circle cx="190" cy="120" r="5" fill="#fb923c"/>
+  <circle cx="250" cy="100" r="5" fill="#fbbf24"/>
+  <!-- Target icon -->
+  <circle cx="320" cy="190" r="35" stroke="#f472b6" stroke-width="3" fill="none"/>
+  <circle cx="320" cy="190" r="25" stroke="#fb923c" stroke-width="3" fill="none"/>
+  <circle cx="320" cy="190" r="15" stroke="#fbbf24" stroke-width="3" fill="none"/>
+  <circle cx="320" cy="190" r="5" fill="#fbbf24"/>
+  <!-- Arrow hitting target -->
+  <line x1="270" y1="150" x2="315" y2="185" stroke="#22c55e" stroke-width="3"/>
+  <polygon points="315,185 320,175 325,190" fill="#22c55e"/>
+  <!-- Text -->
+  <text x="200" y="265" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">Digital Marketing Mastery</text>
+</svg>

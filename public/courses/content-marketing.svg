@@ -1,0 +1,41 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#171723"/>
+  <defs>
+    <linearGradient id="cmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <!-- Document/Blog post -->
+  <rect x="100" y="50" width="140" height="180" rx="8" fill="#252536" stroke="url(#cmGrad)" stroke-width="2"/>
+  <rect x="115" y="70" width="80" height="10" rx="2" fill="#34d399" opacity="0.8"/>
+  <rect x="115" y="90" width="110" height="6" rx="2" fill="white" opacity="0.3"/>
+  <rect x="115" y="105" width="100" height="6" rx="2" fill="white" opacity="0.3"/>
+  <rect x="115" y="120" width="90" height="6" rx="2" fill="white" opacity="0.3"/>
+  <rect x="115" y="140" width="110" height="50" rx="4" fill="#06b6d4" opacity="0.3"/>
+  <rect x="115" y="200" width="60" height="6" rx="2" fill="white" opacity="0.3"/>
+  <!-- Pencil icon -->
+  <g transform="translate(260, 80) rotate(45)">
+    <rect x="0" y="0" width="15" height="60" fill="#fbbf24"/>
+    <polygon points="7.5,60 0,75 15,75" fill="#f472b6"/>
+    <rect x="0" y="0" width="15" height="10" fill="#ef4444"/>
+  </g>
+  <!-- Flying content elements -->
+  <rect x="280" y="150" width="60" height="40" rx="4" fill="#8b5cf6" opacity="0.7"/>
+  <rect x="290" y="160" width="40" height="4" rx="2" fill="white" opacity="0.5"/>
+  <rect x="290" y="170" width="30" height="4" rx="2" fill="white" opacity="0.5"/>
+  <rect x="300" y="200" width="50" height="35" rx="4" fill="#ec4899" opacity="0.6"/>
+  <rect x="310" y="210" width="30" height="4" rx="2" fill="white" opacity="0.5"/>
+  <rect x="310" y="220" width="20" height="4" rx="2" fill="white" opacity="0.5"/>
+  <!-- Connection lines -->
+  <path d="M240 130 Q260 140 280 150" stroke="url(#cmGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+  <path d="M240 170 Q270 180 300 200" stroke="url(#cmGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- Megaphone -->
+  <polygon points="60,130 100,110 100,150" fill="#34d399"/>
+  <rect x="45" y="120" width="20" height="20" rx="3" fill="#06b6d4"/>
+  <!-- Sound waves -->
+  <path d="M105 130 Q115 120 115 130 Q115 140 105 130" stroke="#34d399" stroke-width="2" fill="none"/>
+  <path d="M115 130 Q130 115 130 130 Q130 145 115 130" stroke="#34d399" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- Text -->
+  <text x="200" y="270" font-family="system-ui" font-size="18" fill="white" text-anchor="middle" font-weight="600">Content Marketing Pro</text>
+</svg>
