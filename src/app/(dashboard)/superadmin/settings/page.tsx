@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
   ArrowLeft,
-  Settings,
   Bell,
   Shield,
   Database,
@@ -15,6 +14,7 @@ import {
   Save,
 } from "lucide-react";
 import Link from "next/link";
+import { AIProviderSettings } from "@/components/settings/ai-provider-settings";
 
 async function getSystemSettings() {
   const aiSettings = await prisma.aISettings.findFirst({
@@ -47,6 +47,14 @@ export default async function SuperadminSettingsPage() {
         </div>
       </div>
 
+      {/* AI Provider Settings - Full Width */}
+      <AIProviderSettings
+        currentProvider={aiSettings?.provider || "openai"}
+        currentModel={aiSettings?.model || "gpt-4o"}
+        maxTokens={aiSettings?.maxTokens || 4096}
+        temperature={aiSettings?.temperature || 0.7}
+      />
+
       <div className="grid gap-6 lg:grid-cols-2">
         {/* General Settings */}
         <Card>
@@ -75,46 +83,6 @@ export default async function SuperadminSettingsPage() {
             <Button className="w-full">
               <Save className="mr-2 h-4 w-4" />
               Save Changes
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* AI Settings */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Settings className="h-5 w-5" />
-              AI Configuration
-            </CardTitle>
-            <CardDescription>
-              Configure AI assistant settings
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">AI Status</span>
-              {aiSettings?.isActive ? (
-                <Badge className="bg-green-500">Active</Badge>
-              ) : (
-                <Badge variant="secondary">Inactive</Badge>
-              )}
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">AI Model</label>
-              <Input defaultValue={aiSettings?.model || "gpt-4o"} />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Max Tokens</label>
-              <Input type="number" defaultValue={aiSettings?.maxTokens || 4096} />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Temperature</label>
-              <Input type="number" step="0.1" defaultValue={aiSettings?.temperature || 0.7} />
-            </div>
-            <Button variant="outline" className="w-full" asChild>
-              <Link href="/superadmin/api-keys">
-                Manage API Keys
-              </Link>
             </Button>
           </CardContent>
         </Card>
@@ -239,7 +207,7 @@ export default async function SuperadminSettingsPage() {
         </Card>
 
         {/* Database Settings */}
-        <Card>
+        <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Database className="h-5 w-5" />
@@ -249,22 +217,26 @@ export default async function SuperadminSettingsPage() {
               Database management and backups
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Provider</span>
-              <Badge>Neon PostgreSQL</Badge>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-4">
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Provider</p>
+                <p className="mt-1 font-semibold">Neon PostgreSQL</p>
+              </div>
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Status</p>
+                <Badge className="mt-1 bg-green-500">Connected</Badge>
+              </div>
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Region</p>
+                <p className="mt-1 font-semibold">US East</p>
+              </div>
+              <div className="rounded-lg border p-4 text-center">
+                <p className="text-sm text-muted-foreground">Last Backup</p>
+                <p className="mt-1 font-semibold">{new Date().toLocaleDateString()}</p>
+              </div>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Status</span>
-              <Badge className="bg-green-500">Connected</Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Last Backup</span>
-              <span className="text-sm text-muted-foreground">
-                {new Date().toLocaleDateString()}
-              </span>
-            </div>
-            <Button variant="outline" className="w-full" asChild>
+            <Button variant="outline" className="mt-4 w-full" asChild>
               <Link href="/superadmin/database">
                 <Database className="mr-2 h-4 w-4" />
                 Database Management
