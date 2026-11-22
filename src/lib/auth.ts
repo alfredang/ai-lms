@@ -19,6 +19,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   providers: [
     Google({
+      // Always show Google's account chooser (users have personal + work accounts).
+      authorization: { params: { prompt: "select_account" } },
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
     }),
